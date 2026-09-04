@@ -407,7 +407,7 @@ MENU_GROUPS = [
 if "current_page" not in st.session_state:
     st.session_state.current_page = "Início"
 
-# No mobile, a navegação lateral usa o parâmetro ?page= para abrir a página
+# No mobile, a navegação lateral atualiza a seção na própria aplicação
 # escolhida imediatamente após o toque no menu.
 ALL_PAGES = [item for _, items in MENU_GROUPS for item in items]
 query_page = st.query_params.get("page")
@@ -437,7 +437,7 @@ with st.sidebar:
     st.divider()
     st.caption("Consultoria em IA Responsável • Capacitação • Governança • Diagnóstico")
 
-# Drawer lateral exclusivo para mobile. Os links atualizam ?page=...; ao abrir
+# Drawer lateral exclusivo para mobile. Os links atualizam a seção na mesma janela; ao abrir
 # a nova página, o drawer volta fechado automaticamente.
 mobile_sections = []
 for section, items in MENU_GROUPS:
@@ -446,7 +446,7 @@ for section, items in MENU_GROUPS:
         active_class = " active" if st.session_state.current_page == item else ""
         href = f"?page={quote(item)}"
         mobile_sections.append(
-            f'<a class="vx-mobile-link{active_class}" href="{href}">{item}</a>'
+            f'<a class="vx-mobile-link{active_class}" href="{href}" target="_self" onclick="this.closest(\'details\').removeAttribute(\'open\');">{item}</a>'
         )
 
 mobile_drawer = f'''
