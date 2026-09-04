@@ -10,10 +10,11 @@ APP_DIR = Path(__file__).resolve().parent
 DB = APP_DIR / "veritas_nexum.db"
 CRITERIA_FILE = APP_DIR / "criteria.json"
 LOGO = APP_DIR / "assets" / "veritas_logo.jpeg"
+FOUNDER_PHOTO = APP_DIR / "assets" / "fundador.jpg"
 
 st.set_page_config(
-    page_title="Veritas Nexum | Governança de IA",
-    page_icon="🛡️",
+    page_title="Veritas Nexum | IA Responsável",
+    page_icon="VN",
     layout="wide",
     initial_sidebar_state="expanded",
 )
@@ -28,7 +29,7 @@ st.markdown(
 }
 html, body, [class*="css"] {font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;}
 .stApp {background:linear-gradient(180deg,#F7FBFB 0%,#FFFFFF 46%); color:var(--vx-text);}
-.block-container {padding-top:1.1rem; padding-bottom:3.2rem; max-width:1380px;}
+.block-container {padding-top:1.1rem; padding-bottom:3.2rem; max-width:1320px;}
 header[data-testid="stHeader"] {background:#F7FBFB !important; height:2.4rem;}
 [data-testid="stToolbar"] {right:1rem;}
 [data-testid="stSidebar"] {background:linear-gradient(180deg,#103B60 0%,#0C6975 54%,#0B8F87 100%); border-right:0;}
@@ -69,6 +70,36 @@ label, [data-testid="stWidgetLabel"] p {color:var(--vx-text) !important; font-we
 .vx-risk {border-left:4px solid var(--vx-red); padding:12px 14px; background:#FFF7F7; border-radius:8px; margin:8px 0;}
 .vx-ok {border-left:4px solid var(--vx-green); padding:12px 14px; background:#F5FBF8; border-radius:8px; margin:8px 0;}
 .vx-footer {text-align:center;color:#607985;font-size:.86rem;padding-top:.5rem;}
+/* Sidebar: keep the navigation heading and options high-contrast. */
+[data-testid="stSidebar"] [data-testid="stWidgetLabel"] p,
+[data-testid="stSidebar"] label,
+[data-testid="stSidebar"] label p {color:#FFFFFF !important;}
+[data-testid="stSidebar"] [role="radiogroup"] {gap:.15rem;}
+[data-testid="stSidebar"] [role="radiogroup"] label {color:#FFFFFF !important;}
+[data-testid="stSidebar"] [role="radiogroup"] label p {color:#FFFFFF !important;font-weight:650;}
+
+/* Institutional home: intentionally restrained and editorial. */
+.vx-home {min-height:68vh;display:flex;flex-direction:column;justify-content:center;padding:3.8rem 1.2rem 5rem;}
+.vx-home-kicker {font-size:.82rem;letter-spacing:.19em;text-transform:uppercase;font-weight:750;color:var(--vx-teal);margin-bottom:1.15rem;}
+.vx-home-title {max-width:980px;font-size:clamp(2.6rem,5.4vw,5.4rem);line-height:.98;letter-spacing:-.055em;font-weight:850;color:var(--vx-deep);margin:0 0 1.5rem;}
+.vx-home-title span {color:var(--vx-teal);}
+.vx-home-line {width:96px;height:4px;border-radius:99px;background:var(--vx-aqua);margin:0 0 1.6rem;}
+.vx-home-sub {max-width:790px;font-size:clamp(1.05rem,1.55vw,1.35rem);line-height:1.65;color:#46636E;margin-bottom:2.2rem;}
+.vx-home-values {display:flex;flex-wrap:wrap;gap:.65rem;}
+.vx-home-values span {border:1px solid #BFDCD8;background:rgba(255,255,255,.72);border-radius:999px;padding:.55rem .9rem;font-size:.88rem;font-weight:700;color:var(--vx-navy);}
+.vx-home-signature {margin-top:3.2rem;color:#70858D;font-size:.9rem;letter-spacing:.02em;}
+
+.vx-reality {margin:1.5rem 1.2rem 4.5rem;padding-top:2.8rem;border-top:1px solid #DCE8E7;display:grid;grid-template-columns:1.05fr .95fr;gap:3rem;align-items:center;}
+.vx-reality-copy h2 {font-size:clamp(1.7rem,2.7vw,2.65rem);line-height:1.12;letter-spacing:-.035em;color:var(--vx-deep);margin:0 0 1rem;}
+.vx-reality-copy p {font-size:1.03rem;line-height:1.75;color:#49636D;margin:0 0 1rem;max-width:720px;}
+.vx-reality-note {font-size:.92rem!important;color:#6B8088!important;border-left:3px solid var(--vx-aqua);padding-left:1rem;}
+.vx-ai-scene {position:relative;min-height:330px;border:1px solid #CFE3E0;border-radius:26px;background:linear-gradient(145deg,#F7FBFB 0%,#EAF7F5 100%);overflow:hidden;box-shadow:0 18px 45px rgba(11,52,78,.08);}
+.vx-ai-core {position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:112px;height:112px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:#fff;border:2px solid var(--vx-aqua);font-size:2.25rem;font-weight:850;color:var(--vx-deep);box-shadow:0 12px 35px rgba(14,148,139,.18);z-index:3;}
+.vx-ai-orbit {position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:245px;height:245px;border:1px dashed rgba(14,148,139,.42);border-radius:50%;}
+.vx-ai-node {position:absolute;background:#fff;border:1px solid #C6DFDC;border-radius:16px;padding:.65rem .8rem;font-size:.8rem;font-weight:750;color:var(--vx-navy);box-shadow:0 8px 22px rgba(11,52,78,.07);z-index:2;}
+.vx-n1{left:7%;top:15%}.vx-n2{right:7%;top:16%}.vx-n3{left:5%;bottom:17%}.vx-n4{right:5%;bottom:17%}.vx-n5{left:50%;bottom:5%;transform:translateX(-50%)}
+.vx-ai-line {position:absolute;height:1px;background:linear-gradient(90deg,transparent,var(--vx-aqua),transparent);width:75%;left:12%;top:50%;opacity:.55;}
+@media(max-width:850px){.vx-reality{grid-template-columns:1fr;gap:1.5rem}.vx-ai-scene{min-height:300px}.vx-home{min-height:auto;padding-top:2.2rem}.vx-home-title{font-size:clamp(2.4rem,12vw,4.2rem)}}
 </style>
 """,
     unsafe_allow_html=True,
@@ -291,57 +322,61 @@ with st.sidebar:
         st.markdown("<div class='sidebar-logo'>", unsafe_allow_html=True)
         st.image(str(LOGO), use_container_width=True)
         st.markdown("</div>", unsafe_allow_html=True)
-    st.markdown("## 🛡️ Veritas Nexum")
+    st.markdown("## Veritas Nexum")
     st.caption("Inteligência Artificial • Dados • Governança")
-    st.markdown("**Desenvolvido por Bruno Bartolomeu**")
     page = st.radio(
-        "Navegação",
-        ["Visão geral", "Sistemas avaliados", "Nova avaliação", "Avaliar critérios", "Resultados", "Plano de ação", "Relatório", "Sobre a Veritas", "Fundador", "Contato"],
+        "NAVEGAÇÃO",
+        ["Início", "Sobre a Veritas", "Fundador", "Sistemas avaliados", "Nova avaliação", "Avaliar critérios", "Resultados", "Plano de ação", "Relatório", "Contato"],
     )
     st.divider()
-    st.caption("MVP • 5 domínios • 45 critérios • evidências • score • riscos • plano de ação")
+    st.caption("Consultoria em IA Responsável • Capacitação • Governança • Diagnóstico")
 
-if page == "Visão geral":
-    left, right = st.columns([3.4, 1.15], vertical_alignment="center")
-    with left:
-        st.title("Veritas Nexum")
-        st.caption("Plataforma de avaliação, governança, riscos e conformidade em Inteligência Artificial")
-        st.markdown(
-            """<div class='vx-hero'><div class='vx-hero-title'>IA responsável com evidências, rastreabilidade e plano de ação</div><div class='vx-hero-sub'>Arquitetura operacional inspirada no FAC-IA Saúde para diagnosticar sistemas de IA, registrar evidências, mensurar maturidade e priorizar adequações.</div></div>""",
-            unsafe_allow_html=True,
-        )
-    with right:
-        if LOGO.exists():
-            st.image(str(LOGO), use_container_width=True)
+if page == "Início":
+    st.markdown(
+        """
+        <section class="vx-home">
+          <div class="vx-home-kicker">VERITAS NEXUM · IA RESPONSÁVEL</div>
+          <div class="vx-home-title">Inteligência Artificial com <span>consciência, critério e confiança.</span></div>
+          <div class="vx-home-line"></div>
+          <div class="vx-home-sub">
+            Conhecimento para compreender. Critério para decidir. Responsabilidade para aplicar.
+          </div>
+          <div class="vx-home-values">
+            <span>IA Responsável</span>
+            <span>Governança</span>
+            <span>Capacitação</span>
+            <span>Dados</span>
+            <span>Confiança</span>
+          </div>
+          <div class="vx-home-signature">Tecnologia com verdade. Decisões com confiança.</div>
+        </section>
 
-    sdf, adf = systems_df(), assessments_df()
-    c1, c2, c3, c4 = st.columns(4)
-    c1.metric("Sistemas cadastrados", len(sdf))
-    c2.metric("Avaliações", len(adf))
-    c3.metric("Critérios", 45)
-    c4.metric("Domínios", 5)
-    st.markdown("### Fluxo operacional")
-    st.info("Cadastro do sistema → Avaliação dos 45 critérios → Evidências → Nota 0–4 → Peso/criticidade → Score → Maturidade → Riscos → Plano de ação → Relatório")
-    if adf.empty:
-        empty_intro(
-            "Comece por aqui",
-            "O MVP está pronto para um teste completo de ponta a ponta.",
-            ["1. Cadastre um sistema de IA em ‘Sistemas avaliados’.", "2. Crie uma rodada em ‘Nova avaliação’.", "3. Avalie os 45 critérios e acompanhe resultados, riscos e plano de ação."],
-        )
-    else:
-        last_id = int(adf.iloc[0]["id"])
-        d = assessment_data(last_id)
-        score, maturity, domains, gaps = calc(d)
-        st.markdown("### Avaliação mais recente")
-        a, b, c = st.columns(3)
-        a.metric("Score Veritas", f"{score}%")
-        b.metric("Maturidade", maturity)
-        c.metric("Lacunas críticas", len(gaps))
-        st.bar_chart(domains.set_index("dominio")[["score_pct"]], horizontal=True)
+        <section class="vx-reality">
+          <div class="vx-reality-copy">
+            <div class="vx-home-kicker">IA NO MUNDO REAL</div>
+            <h2>A Inteligência Artificial já participa de decisões, processos e experiências cotidianas.</h2>
+            <p>Ela apoia análises financeiras, atendimento a clientes, saúde, educação, segurança, indústria, criação de conteúdo e produtividade. Quanto maior sua presença, maior também a necessidade de compreender limites, riscos e responsabilidades.</p>
+            <p>A questão deixou de ser apenas <strong>“como usar IA?”</strong>. Profissionais e organizações precisam saber <strong>quando usar, por que usar e como usar com responsabilidade</strong>.</p>
+            <p class="vx-reality-note">É nesse espaço entre inovação e responsabilidade que a Veritas Nexum atua.</p>
+          </div>
+          <div class="vx-ai-scene" role="img" aria-label="Ilustração da Inteligência Artificial conectando aplicações do mundo real">
+            <div class="vx-ai-line"></div>
+            <div class="vx-ai-orbit"></div>
+            <div class="vx-ai-core">IA</div>
+            <div class="vx-ai-node vx-n1">Saúde</div>
+            <div class="vx-ai-node vx-n2">Finanças</div>
+            <div class="vx-ai-node vx-n3">Educação</div>
+            <div class="vx-ai-node vx-n4">Empresas</div>
+            <div class="vx-ai-node vx-n5">Pessoas &amp; Decisões</div>
+          </div>
+        </section>
+        """,
+        unsafe_allow_html=True,
+    )
 
 elif page == "Sistemas avaliados":
     st.title("Sistemas avaliados")
-    st.caption("Cadastre sistemas, modelos ou aplicações de IA que serão submetidos à avaliação estruturada da Veritas.")
+    st.caption("Registre sistemas, modelos ou aplicações de IA para apoiar diagnósticos orientativos e atividades de capacitação da Veritas Nexum.")
     with st.expander("➕ Cadastrar novo sistema", expanded=True):
         with st.form("new_system"):
             c1, c2 = st.columns(2)
@@ -486,33 +521,37 @@ elif page == "Relatório":
 elif page == "Sobre a Veritas":
     st.title("Sobre a Veritas")
     st.markdown(
-        """<div class='vx-hero'><div class='vx-hero-title'>Governança, riscos e conformidade para sistemas de Inteligência Artificial</div><div class='vx-hero-sub'>A Veritas Nexum conecta Inteligência Artificial, dados e governança para apoiar organizações na adoção responsável, rastreável e baseada em evidências.</div></div>""",
+        """<div class='vx-hero'><div class='vx-hero-title'>Conhecimento para usar Inteligência Artificial com responsabilidade</div><div class='vx-hero-sub'>A Veritas Nexum é uma consultoria de IA Responsável que capacita profissionais e organizações para compreender oportunidades, limites, riscos e boas práticas no uso da Inteligência Artificial.</div></div>""",
         unsafe_allow_html=True,
     )
     c1, c2, c3 = st.columns(3)
     with c1:
-        st.markdown("### Diagnóstico")
-        st.write("Avaliação de maturidade, riscos, documentação, dados, processos e uso institucional de IA.")
+        st.markdown("### Capacitação")
+        st.write("Palestras, workshops, treinamentos e programas de letramento para transformar princípios de IA Responsável em prática profissional.")
     with c2:
-        st.markdown("### Governança")
-        st.write("Estruturação de papéis, responsabilidades, controles, políticas, indicadores e ritos de acompanhamento.")
+        st.markdown("### Orientação")
+        st.write("Apoio na definição de boas práticas, papéis, responsabilidades e formas seguras e conscientes de incorporar IA ao trabalho.")
     with c3:
-        st.markdown("### Conformidade")
-        st.write("Organização de evidências, requisitos, trilhas de auditoria e planos de adequação.")
-    st.markdown("### Método")
-    st.info("1. Levantamento → 2. Avaliação → 3. Estruturação → 4. Monitoramento")
-    st.markdown("### Diferencial da nova arquitetura")
-    st.write("A plataforma deixa de ser apenas uma apresentação institucional e passa a operar como um instrumento de trabalho: cadastra sistemas, executa diagnósticos, guarda evidências, calcula scores, identifica lacunas, gera plano de ação e produz relatório.")
+        st.markdown("### Diagnóstico")
+        st.write("Análise orientativa de maturidade, riscos, dados, transparência, governança e práticas de uso de IA, com recomendações de evolução.")
+    st.markdown("### Nossa proposta")
+    st.write("A Veritas Nexum aproxima profissionais e organizações dos princípios de IA Responsável por meio de conhecimento aplicado, capacitação e orientação. O objetivo é apoiar decisões mais conscientes sobre como adotar, utilizar e governar Inteligência Artificial no trabalho.")
+    st.markdown("### Como trabalhamos")
+    st.info("Compreender o contexto → Capacitar pessoas → Identificar riscos → Organizar boas práticas → Definir ações → Acompanhar a evolução")
+    st.markdown("### Ambiente de apoio")
+    st.write("A Veritas Nexum utiliza recursos digitais próprios como apoio às atividades consultivas e educacionais, permitindo organizar diagnósticos, registrar evidências, identificar oportunidades de melhoria e acompanhar planos de evolução em IA Responsável.")
+    st.caption("Os recursos de diagnóstico disponibilizados neste ambiente têm caráter orientativo e de apoio à capacitação e à consultoria.")
 
 elif page == "Fundador":
     st.title("Fundador")
     c1, c2 = st.columns([2.2, 1], vertical_alignment="center")
     with c1:
         st.markdown("## Bruno Bartolomeu")
-        st.markdown("**Especialista em Dados, Inteligência Artificial, Governança e Conformidade de Sistemas de IA.**")
+        st.markdown("**Especialista em Dados, Inteligência Artificial e IA Responsável.**")
         st.write("Profissional com experiência em Ciência e Análise de Dados, Machine Learning, Analytics e Inteligência Artificial, com atuação nos setores financeiro, seguros, indústria e saúde.")
         st.write("Mestre em Inovação Tecnológica pela UFMG, professor universitário e pesquisador em IA Responsável, com foco em governança, riscos, transparência e conformidade.")
-        st.write("Fundador da Veritas IA Responsável, conectando experiência de mercado, pesquisa científica e tecnologia para apoiar organizações na adoção segura e responsável da Inteligência Artificial.")
+        st.write("Fundador da Veritas Nexum – IA Responsável, iniciativa dedicada à capacitação e orientação de profissionais e organizações para o uso consciente, seguro e responsável da Inteligência Artificial.")
+        st.info("Bruno Bartolomeu é criador do FAC-IA Saúde, iniciativa acadêmica atualmente em processo de validação e avaliação institucional, incluindo tratativas relacionadas à propriedade intelectual no âmbito da UFMG/CTIT. A Veritas Nexum é apresentada como iniciativa independente e não representa endosso institucional ao serviço de consultoria.")
         st.markdown("[LinkedIn de Bruno Bartolomeu](https://www.linkedin.com/in/bruno-bartolomeu-39628a163/)")
     with c2:
         if FOUNDER_PHOTO.exists():
@@ -521,7 +560,7 @@ elif page == "Fundador":
 elif page == "Contato":
     st.title("Contato")
     st.markdown("### Fale com a Veritas")
-    st.write("Solicite uma conversa para diagnóstico, palestra, workshop ou estruturação de programa de IA responsável.")
+    st.write("Solicite uma conversa sobre capacitação, palestra, workshop, diagnóstico orientativo ou estruturação de práticas de IA Responsável.")
     c1, c2 = st.columns(2)
     with c1:
         st.markdown("**📍 Localização**")
@@ -532,8 +571,8 @@ elif page == "Contato":
         st.markdown("[linkedin.com/in/bruno-bartolomeu-39628a163](https://www.linkedin.com/in/bruno-bartolomeu-39628a163/)")
     with c2:
         st.markdown("**Principais frentes**")
-        st.write("• Diagnóstico executivo\n\n• Governança e gestão de riscos\n\n• Matriz de riscos e indicadores\n\n• IA Responsável em Saúde\n\n• Capacitação, palestras e workshops\n\n• Documentação institucional")
-        st.info("Mensagem sugerida: ‘Olá, Bruno. Gostaria de conversar sobre um diagnóstico de maturidade, riscos e conformidade em IA responsável para minha organização.’")
+        st.write("• Capacitação e letramento em IA\n\n• Palestras e workshops\n\n• Boas práticas de IA Responsável\n\n• Diagnóstico orientativo\n\n• Governança e gestão de riscos\n\n• Apoio à estruturação de políticas e práticas internas")
+        st.info("Mensagem sugerida: ‘Olá, Bruno. Gostaria de conversar sobre capacitação e boas práticas para o uso responsável de IA na minha organização.’")
 
     st.divider()
     st.markdown("### Solicitação de diagnóstico")
@@ -544,7 +583,7 @@ elif page == "Contato":
         cargo = st.text_input("Cargo / função")
         organizacao = st.text_input("Empresa / instituição *")
         setor = st.selectbox("Setor", ["Selecione", "Saúde", "Financeiro", "Seguros", "Indústria", "Educação", "Setor público", "Tecnologia", "Outro"])
-        interesse = st.selectbox("Principal interesse *", ["Selecione", "Diagnóstico de maturidade em IA", "Governança e gestão de riscos", "Conformidade e evidências", "IA Responsável em Saúde", "Indicadores e dashboards", "Capacitação / palestra / workshop"])
+        interesse = st.selectbox("Principal interesse *", ["Selecione", "Capacitação / letramento em IA", "Palestra / workshop", "Boas práticas de IA Responsável", "Diagnóstico orientativo", "Governança e gestão de riscos", "Políticas e práticas internas de IA"])
         mensagem = st.text_area("Desafio ou necessidade atual")
         consent = st.checkbox("Autorizo o uso destas informações exclusivamente para contato e análise inicial da solicitação.")
         sent = st.form_submit_button("Preparar contato", type="primary")
@@ -553,10 +592,10 @@ elif page == "Contato":
                 st.error("Preencha os campos obrigatórios e marque a autorização.")
             else:
                 import urllib.parse
-                subject = urllib.parse.quote("Contato Veritas Nexum - Diagnóstico em IA Responsável")
+                subject = urllib.parse.quote("Contato Veritas Nexum - IA Responsável")
                 body = urllib.parse.quote(f"Olá, Bruno.\n\nNome: {nome}\nE-mail: {email}\nTelefone/WhatsApp: {telefone}\nCargo: {cargo}\nEmpresa/Instituição: {organizacao}\nSetor: {setor}\nInteresse: {interesse}\n\nDesafio/necessidade: {mensagem}")
                 st.success("Dados preparados. Clique abaixo para abrir seu aplicativo de e-mail.")
                 st.markdown(f"[**Enviar solicitação por e-mail**](mailto:bbartolomeu.net@gmail.com?subject={subject}&body={body})")
 
 st.divider()
-st.markdown("<div class='vx-footer'>Veritas Nexum • Inteligência Artificial • Dados • Governança • MVP para teste e validação</div>", unsafe_allow_html=True)
+st.markdown("<div class='vx-footer'>Veritas Nexum – IA Responsável • Capacitação • Consultoria • Governança • Tecnologia com responsabilidade</div>", unsafe_allow_html=True)
