@@ -100,6 +100,46 @@ label, [data-testid="stWidgetLabel"] p {color:var(--vx-text) !important; font-we
 .vx-n1{left:7%;top:15%}.vx-n2{right:7%;top:16%}.vx-n3{left:5%;bottom:17%}.vx-n4{right:5%;bottom:17%}.vx-n5{left:50%;bottom:5%;transform:translateX(-50%)}
 .vx-ai-line {position:absolute;height:1px;background:linear-gradient(90deg,transparent,var(--vx-aqua),transparent);width:75%;left:12%;top:50%;opacity:.55;}
 @media(max-width:850px){.vx-reality{grid-template-columns:1fr;gap:1.5rem}.vx-ai-scene{min-height:300px}.vx-home{min-height:auto;padding-top:2.2rem}.vx-home-title{font-size:clamp(2.4rem,12vw,4.2rem)}}
+
+/* Sidebar navigation: button-based, instant and stateful. */
+[data-testid="stSidebar"] .stButton {margin:.12rem 0;}
+[data-testid="stSidebar"] .stButton > button {
+  width:100%;
+  justify-content:flex-start;
+  min-height:2.45rem;
+  border-radius:10px;
+  padding:.48rem .72rem;
+  font-weight:650;
+  border:1px solid transparent;
+  transition:all .16s ease;
+  box-shadow:none;
+}
+[data-testid="stSidebar"] .stButton > button[kind="secondary"] {
+  background:transparent !important;
+  color:#FFFFFF !important;
+}
+[data-testid="stSidebar"] .stButton > button[kind="secondary"] p {color:#FFFFFF !important;}
+[data-testid="stSidebar"] .stButton > button[kind="secondary"]:hover {
+  background:rgba(255,255,255,.12) !important;
+  border-color:rgba(255,255,255,.20) !important;
+  transform:translateX(3px);
+}
+[data-testid="stSidebar"] .stButton > button[kind="primary"] {
+  background:#FFFFFF !important;
+  color:#103B60 !important;
+  border-color:#FFFFFF !important;
+  box-shadow:0 5px 14px rgba(0,0,0,.10);
+}
+[data-testid="stSidebar"] .stButton > button[kind="primary"] p {color:#103B60 !important;font-weight:800;}
+.vx-menu-section {
+  margin:.95rem 0 .28rem;
+  font-size:.72rem;
+  letter-spacing:.10em;
+  text-transform:uppercase;
+  font-weight:800;
+  color:rgba(255,255,255,.72) !important;
+}
+
 </style>
 """,
     unsafe_allow_html=True,
@@ -317,6 +357,18 @@ def report_markdown(aid):
 
 init_db()
 
+# Navegação lateral baseada em botões. O clique atualiza o estado e a página
+# é renderizada imediatamente na mesma interação do Streamlit.
+MENU_GROUPS = [
+    ("Institucional", ["Início", "Sobre a Veritas", "Fundador"]),
+    ("Diagnóstico", ["Sistemas avaliados", "Nova avaliação", "Avaliar critérios"]),
+    ("Entregas", ["Resultados", "Plano de ação", "Relatório"]),
+    ("Relacionamento", ["Contato"]),
+]
+
+if "current_page" not in st.session_state:
+    st.session_state.current_page = "Início"
+
 with st.sidebar:
     if LOGO.exists():
         st.markdown("<div class='sidebar-logo'>", unsafe_allow_html=True)
@@ -324,12 +376,23 @@ with st.sidebar:
         st.markdown("</div>", unsafe_allow_html=True)
     st.markdown("## Veritas Nexum")
     st.caption("Inteligência Artificial • Dados • Governança")
-    page = st.radio(
-        "NAVEGAÇÃO",
-        ["Início", "Sobre a Veritas", "Fundador", "Sistemas avaliados", "Nova avaliação", "Avaliar critérios", "Resultados", "Plano de ação", "Relatório", "Contato"],
-    )
+
+    for section, items in MENU_GROUPS:
+        st.markdown(f"<div class='vx-menu-section'>{section}</div>", unsafe_allow_html=True)
+        for item in items:
+            active = st.session_state.current_page == item
+            if st.button(
+                item,
+                key=f"nav_{item}",
+                use_container_width=True,
+                type="primary" if active else "secondary",
+            ):
+                st.session_state.current_page = item
+
     st.divider()
     st.caption("Consultoria em IA Responsável • Capacitação • Governança • Diagnóstico")
+
+page = st.session_state.current_page
 
 if page == "Início":
     st.markdown(
