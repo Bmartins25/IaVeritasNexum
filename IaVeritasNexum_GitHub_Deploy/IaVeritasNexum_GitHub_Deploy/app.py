@@ -2,6 +2,7 @@ import json
 import sqlite3
 from datetime import datetime
 from pathlib import Path
+from urllib.parse import quote
 
 import pandas as pd
 import streamlit as st
@@ -141,42 +142,39 @@ label, [data-testid="stWidgetLabel"] p {color:var(--vx-text) !important; font-we
 }
 
 
-/* Mobile navigation: sidebar is replaced by an in-page menu so it never
-   covers the content on phones. Desktop keeps the full sidebar. */
-.st-key-mobile_nav {display:none;}
+/* Mobile: lateral drawer. It stays out of the content area and opens from
+   the left. A menu click reloads the selected page and the drawer closes. */
+.vx-mobile-drawer {display:none;}
 @media (max-width: 768px) {
   [data-testid="stSidebar"] {display:none !important;}
   [data-testid="collapsedControl"] {display:none !important;}
   button[data-testid="stBaseButton-headerNoPadding"] {display:none !important;}
-  .st-key-mobile_nav {
-    display:block !important;
-    position:sticky;
-    top:.35rem;
-    z-index:999;
-    margin:-.2rem 0 1rem 0;
-    padding:.65rem .75rem .75rem;
-    border:1px solid #CFE5E2;
-    border-radius:14px;
-    background:rgba(247,251,251,.97);
-    box-shadow:0 8px 24px rgba(16,59,96,.10);
-    backdrop-filter:blur(10px);
+  header[data-testid="stHeader"] {height:.35rem !important; min-height:.35rem !important;background:transparent !important;}
+
+  .vx-mobile-drawer {display:block !important;position:fixed;left:.7rem;top:.7rem;z-index:10000;}
+  .vx-mobile-drawer summary {
+    list-style:none;cursor:pointer;width:44px;height:44px;border-radius:13px;
+    display:flex;align-items:center;justify-content:center;background:#0B8F87;color:#fff;
+    box-shadow:0 8px 22px rgba(16,59,96,.22);font-size:1.45rem;font-weight:800;
+    border:1px solid rgba(255,255,255,.35);user-select:none;
   }
-  .st-key-mobile_nav [data-testid="stWidgetLabel"] p {
-    color:#103B60 !important;
-    font-weight:800 !important;
-    font-size:.78rem !important;
-    letter-spacing:.06em;
-    text-transform:uppercase;
+  .vx-mobile-drawer summary::-webkit-details-marker {display:none;}
+  .vx-mobile-drawer[open] summary {position:fixed;left:calc(min(82vw, 310px) - 3.3rem);top:1rem;background:rgba(255,255,255,.14);box-shadow:none;}
+  .vx-mobile-panel {
+    position:fixed;left:0;top:0;bottom:0;width:min(82vw,310px);overflow-y:auto;
+    padding:1.1rem 1rem 1.5rem;background:linear-gradient(180deg,#103B60 0%,#0C6975 54%,#0B8F87 100%);
+    box-shadow:12px 0 32px rgba(5,39,58,.24);
   }
-  .st-key-mobile_nav [data-baseweb="select"] > div {
-    min-height:2.7rem;
-    border:1px solid #AFCFCC !important;
-    border-radius:10px !important;
-    background:#FFFFFF !important;
-  }
-  .block-container {padding-top:.65rem !important; padding-left:1rem !important; padding-right:1rem !important;}
-  header[data-testid="stHeader"] {height:.5rem !important; min-height:.5rem !important;}
-  .vx-home {padding:1.5rem .15rem 3rem !important;}
+  .vx-mobile-brand {padding-right:3rem;margin-bottom:1.1rem;}
+  .vx-mobile-brand strong {display:block;color:#fff;font-size:1.15rem;letter-spacing:-.01em;}
+  .vx-mobile-brand span {display:block;color:rgba(255,255,255,.72);font-size:.78rem;margin-top:.18rem;}
+  .vx-mobile-section {margin:1rem .45rem .35rem;color:rgba(255,255,255,.66);font-size:.67rem;font-weight:800;letter-spacing:.11em;text-transform:uppercase;}
+  .vx-mobile-link {display:block;color:#fff !important;text-decoration:none !important;padding:.72rem .78rem;margin:.12rem 0;border-radius:10px;font-size:.93rem;font-weight:650;border:1px solid transparent;}
+  .vx-mobile-link:hover {background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.16);}
+  .vx-mobile-link.active {background:#fff;color:#103B60 !important;font-weight:800;box-shadow:0 5px 14px rgba(0,0,0,.10);}
+
+  .block-container {padding-top:1.05rem !important;padding-left:1rem !important;padding-right:1rem !important;}
+  .vx-home {padding:2.6rem .15rem 3rem !important;}
   .vx-reality {margin:1rem .15rem 3rem !important;}
 }
 
@@ -409,6 +407,13 @@ MENU_GROUPS = [
 if "current_page" not in st.session_state:
     st.session_state.current_page = "Início"
 
+# No mobile, a navegação lateral usa o parâmetro ?page= para abrir a página
+# escolhida imediatamente após o toque no menu.
+ALL_PAGES = [item for _, items in MENU_GROUPS for item in items]
+query_page = st.query_params.get("page")
+if query_page in ALL_PAGES:
+    st.session_state.current_page = query_page
+
 with st.sidebar:
     if LOGO.exists():
         st.markdown("<div class='sidebar-logo'>", unsafe_allow_html=True)
@@ -432,22 +437,31 @@ with st.sidebar:
     st.divider()
     st.caption("Consultoria em IA Responsável • Capacitação • Governança • Diagnóstico")
 
-# Em telas pequenas, o menu lateral é ocultado por CSS e substituído por este
-# seletor fixo no topo. Assim a navegação não cobre o conteúdo e não depende
-# da pequena seta nativa do Streamlit.
-MOBILE_MENU = [item for _, items in MENU_GROUPS for item in items]
+# Drawer lateral exclusivo para mobile. Os links atualizam ?page=...; ao abrir
+# a nova página, o drawer volta fechado automaticamente.
+mobile_sections = []
+for section, items in MENU_GROUPS:
+    mobile_sections.append(f'<div class="vx-mobile-section">{section}</div>')
+    for item in items:
+        active_class = " active" if st.session_state.current_page == item else ""
+        href = f"?page={quote(item)}"
+        mobile_sections.append(
+            f'<a class="vx-mobile-link{active_class}" href="{href}">{item}</a>'
+        )
 
-def _mobile_navigate():
-    st.session_state.current_page = st.session_state.mobile_page
-
-with st.container(key="mobile_nav"):
-    st.selectbox(
-        "Navegação",
-        MOBILE_MENU,
-        index=MOBILE_MENU.index(st.session_state.current_page),
-        key="mobile_page",
-        on_change=_mobile_navigate,
-    )
+mobile_drawer = f'''
+<details class="vx-mobile-drawer">
+  <summary aria-label="Abrir navegação">☰</summary>
+  <nav class="vx-mobile-panel">
+    <div class="vx-mobile-brand">
+      <strong>Veritas Nexum</strong>
+      <span>IA Responsável · Dados · Governança</span>
+    </div>
+    {''.join(mobile_sections)}
+  </nav>
+</details>
+'''
+st.markdown(mobile_drawer, unsafe_allow_html=True)
 
 page = st.session_state.current_page
 
