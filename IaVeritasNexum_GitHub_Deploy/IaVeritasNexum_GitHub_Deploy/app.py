@@ -140,6 +140,46 @@ label, [data-testid="stWidgetLabel"] p {color:var(--vx-text) !important; font-we
   color:rgba(255,255,255,.72) !important;
 }
 
+
+/* Mobile navigation: sidebar is replaced by an in-page menu so it never
+   covers the content on phones. Desktop keeps the full sidebar. */
+.st-key-mobile_nav {display:none;}
+@media (max-width: 768px) {
+  [data-testid="stSidebar"] {display:none !important;}
+  [data-testid="collapsedControl"] {display:none !important;}
+  button[data-testid="stBaseButton-headerNoPadding"] {display:none !important;}
+  .st-key-mobile_nav {
+    display:block !important;
+    position:sticky;
+    top:.35rem;
+    z-index:999;
+    margin:-.2rem 0 1rem 0;
+    padding:.65rem .75rem .75rem;
+    border:1px solid #CFE5E2;
+    border-radius:14px;
+    background:rgba(247,251,251,.97);
+    box-shadow:0 8px 24px rgba(16,59,96,.10);
+    backdrop-filter:blur(10px);
+  }
+  .st-key-mobile_nav [data-testid="stWidgetLabel"] p {
+    color:#103B60 !important;
+    font-weight:800 !important;
+    font-size:.78rem !important;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+  }
+  .st-key-mobile_nav [data-baseweb="select"] > div {
+    min-height:2.7rem;
+    border:1px solid #AFCFCC !important;
+    border-radius:10px !important;
+    background:#FFFFFF !important;
+  }
+  .block-container {padding-top:.65rem !important; padding-left:1rem !important; padding-right:1rem !important;}
+  header[data-testid="stHeader"] {height:.5rem !important; min-height:.5rem !important;}
+  .vx-home {padding:1.5rem .15rem 3rem !important;}
+  .vx-reality {margin:1rem .15rem 3rem !important;}
+}
+
 </style>
 """,
     unsafe_allow_html=True,
@@ -391,6 +431,23 @@ with st.sidebar:
 
     st.divider()
     st.caption("Consultoria em IA Responsável • Capacitação • Governança • Diagnóstico")
+
+# Em telas pequenas, o menu lateral é ocultado por CSS e substituído por este
+# seletor fixo no topo. Assim a navegação não cobre o conteúdo e não depende
+# da pequena seta nativa do Streamlit.
+MOBILE_MENU = [item for _, items in MENU_GROUPS for item in items]
+
+def _mobile_navigate():
+    st.session_state.current_page = st.session_state.mobile_page
+
+with st.container(key="mobile_nav"):
+    st.selectbox(
+        "Navegação",
+        MOBILE_MENU,
+        index=MOBILE_MENU.index(st.session_state.current_page),
+        key="mobile_page",
+        on_change=_mobile_navigate,
+    )
 
 page = st.session_state.current_page
 
