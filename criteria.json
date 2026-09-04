@@ -1,0 +1,362 @@
+[
+  {
+    "codigo": "G01",
+    "dominio": "Governança e Responsabilização",
+    "criterio": "Estrutura de governança de IA",
+    "verificacao": "Existe governança formal para utilização de IA?",
+    "peso": 3,
+    "criticidade": 4
+  },
+  {
+    "codigo": "G02",
+    "dominio": "Governança e Responsabilização",
+    "criterio": "Papéis e responsabilidades",
+    "verificacao": "Estão definidos responsáveis pelo sistema, dados e decisões?",
+    "peso": 3,
+    "criticidade": 4
+  },
+  {
+    "codigo": "G03",
+    "dominio": "Governança e Responsabilização",
+    "criterio": "Accountability",
+    "verificacao": "É possível identificar quem responde pelas decisões e consequências?",
+    "peso": 3,
+    "criticidade": 4
+  },
+  {
+    "codigo": "G04",
+    "dominio": "Governança e Responsabilização",
+    "criterio": "Supervisão humana",
+    "verificacao": "Existe intervenção/revisão humana nas decisões relevantes?",
+    "peso": 3,
+    "criticidade": 4
+  },
+  {
+    "codigo": "G05",
+    "dominio": "Governança e Responsabilização",
+    "criterio": "Gestão do ciclo de vida",
+    "verificacao": "O sistema é acompanhado do desenvolvimento à descontinuação?",
+    "peso": 2,
+    "criticidade": 3
+  },
+  {
+    "codigo": "G06",
+    "dominio": "Governança e Responsabilização",
+    "criterio": "Documentação institucional",
+    "verificacao": "Existem políticas, procedimentos e registros formais?",
+    "peso": 2,
+    "criticidade": 3
+  },
+  {
+    "codigo": "G07",
+    "dominio": "Governança e Responsabilização",
+    "criterio": "Auditoria e rastreabilidade",
+    "verificacao": "Decisões, alterações e operações podem ser auditadas?",
+    "peso": 3,
+    "criticidade": 4
+  },
+  {
+    "codigo": "G08",
+    "dominio": "Governança e Responsabilização",
+    "criterio": "Gestão de incidentes",
+    "verificacao": "Existem procedimentos para identificar e tratar incidentes relacionados à IA?",
+    "peso": 3,
+    "criticidade": 4
+  },
+  {
+    "codigo": "G09",
+    "dominio": "Governança e Responsabilização",
+    "criterio": "Conformidade normativa",
+    "verificacao": "O sistema está alinhado à legislação, normas e diretrizes aplicáveis?",
+    "peso": 3,
+    "criticidade": 4
+  },
+  {
+    "codigo": "D01",
+    "dominio": "Dados, Privacidade e LGPD",
+    "criterio": "Qualidade dos dados",
+    "verificacao": "Os dados apresentam qualidade adequada ao uso pretendido?",
+    "peso": 3,
+    "criticidade": 4
+  },
+  {
+    "codigo": "D02",
+    "dominio": "Dados, Privacidade e LGPD",
+    "criterio": "Completude",
+    "verificacao": "As variáveis necessárias possuem nível adequado de preenchimento?",
+    "peso": 2,
+    "criticidade": 3
+  },
+  {
+    "codigo": "D03",
+    "dominio": "Dados, Privacidade e LGPD",
+    "criterio": "Consistência",
+    "verificacao": "Existem valores contraditórios, incompatíveis ou inconsistentes?",
+    "peso": 2,
+    "criticidade": 3
+  },
+  {
+    "codigo": "D04",
+    "dominio": "Dados, Privacidade e LGPD",
+    "criterio": "Representatividade",
+    "verificacao": "Os dados representam adequadamente a público ou contexto-alvo?",
+    "peso": 3,
+    "criticidade": 4
+  },
+  {
+    "codigo": "D05",
+    "dominio": "Dados, Privacidade e LGPD",
+    "criterio": "Diversidade populacional",
+    "verificacao": "Diferentes grupos relevantes e perfis demográficos estão representados?",
+    "peso": 3,
+    "criticidade": 4
+  },
+  {
+    "codigo": "D06",
+    "dominio": "Dados, Privacidade e LGPD",
+    "criterio": "Dados ausentes",
+    "verificacao": "Dados ausentes são identificados, quantificados e tratados?",
+    "peso": 2,
+    "criticidade": 3
+  },
+  {
+    "codigo": "D07",
+    "dominio": "Dados, Privacidade e LGPD",
+    "criterio": "Rastreabilidade dos dados",
+    "verificacao": "É possível identificar origem, transformação e utilização dos dados?",
+    "peso": 3,
+    "criticidade": 4
+  },
+  {
+    "codigo": "D08",
+    "dominio": "Dados, Privacidade e LGPD",
+    "criterio": "Estabilidade temporal",
+    "verificacao": "Mudanças temporais na distribuição dos dados são avaliadas?",
+    "peso": 2,
+    "criticidade": 3
+  },
+  {
+    "codigo": "D09",
+    "dominio": "Dados, Privacidade e LGPD",
+    "criterio": "Finalidade e minimização",
+    "verificacao": "São utilizados apenas dados necessários à finalidade declarada?",
+    "peso": 3,
+    "criticidade": 4
+  },
+  {
+    "codigo": "D10",
+    "dominio": "Dados, Privacidade e LGPD",
+    "criterio": "Privacidade e proteção",
+    "verificacao": "Existem mecanismos adequados de proteção dos dados pessoais/sensíveis?",
+    "peso": 3,
+    "criticidade": 4
+  },
+  {
+    "codigo": "D11",
+    "dominio": "Dados, Privacidade e LGPD",
+    "criterio": "Anonimização/pseudonimização",
+    "verificacao": "Há proteção adequada contra identificação ou reidentificação?",
+    "peso": 3,
+    "criticidade": 4
+  },
+  {
+    "codigo": "S01",
+    "dominio": "Segurança e Gestão de Riscos",
+    "criterio": "Identificação de riscos",
+    "verificacao": "Os riscos decorrentes do uso da IA foram identificados?",
+    "peso": 3,
+    "criticidade": 4
+  },
+  {
+    "codigo": "S02",
+    "dominio": "Segurança e Gestão de Riscos",
+    "criterio": "Classificação de risco",
+    "verificacao": "O nível de criticidade da aplicação foi estabelecido?",
+    "peso": 3,
+    "criticidade": 4
+  },
+  {
+    "codigo": "S03",
+    "dominio": "Segurança e Gestão de Riscos",
+    "criterio": "Impacto sobre pessoas e processos",
+    "verificacao": "Foram avaliadas consequências potenciais de decisões incorretas?",
+    "peso": 3,
+    "criticidade": 4
+  },
+  {
+    "codigo": "S04",
+    "dominio": "Segurança e Gestão de Riscos",
+    "criterio": "Falsos positivos",
+    "verificacao": "O impacto operacional, humano ou institucional dos falsos positivos é conhecido?",
+    "peso": 3,
+    "criticidade": 4
+  },
+  {
+    "codigo": "S05",
+    "dominio": "Segurança e Gestão de Riscos",
+    "criterio": "Falsos negativos",
+    "verificacao": "O impacto operacional, humano ou institucional dos falsos negativos é conhecido?",
+    "peso": 3,
+    "criticidade": 4
+  },
+  {
+    "codigo": "S06",
+    "dominio": "Segurança e Gestão de Riscos",
+    "criterio": "Grupos vulneráveis",
+    "verificacao": "Existem grupos com risco desproporcional de resultados inadequados?",
+    "peso": 3,
+    "criticidade": 4
+  },
+  {
+    "codigo": "S07",
+    "dominio": "Segurança e Gestão de Riscos",
+    "criterio": "Mitigação de riscos",
+    "verificacao": "Existem medidas para reduzir riscos identificados?",
+    "peso": 3,
+    "criticidade": 4
+  },
+  {
+    "codigo": "S08",
+    "dominio": "Segurança e Gestão de Riscos",
+    "criterio": "Uso dentro do escopo",
+    "verificacao": "O sistema é utilizado apenas para população/finalidade para a qual foi avaliado?",
+    "peso": 3,
+    "criticidade": 4
+  },
+  {
+    "codigo": "S09",
+    "dominio": "Segurança e Gestão de Riscos",
+    "criterio": "Segurança operacional",
+    "verificacao": "Existem mecanismos para interromper, revisar ou substituir decisões inadequadas?",
+    "peso": 3,
+    "criticidade": 4
+  },
+  {
+    "codigo": "T01",
+    "dominio": "Transparência e Explicabilidade",
+    "criterio": "Transparência do sistema",
+    "verificacao": "Está claro que IA está sendo utilizada e para qual finalidade?",
+    "peso": 2,
+    "criticidade": 3
+  },
+  {
+    "codigo": "T02",
+    "dominio": "Transparência e Explicabilidade",
+    "criterio": "Documentação do modelo",
+    "verificacao": "Arquitetura, versão, finalidade e características estão documentadas?",
+    "peso": 2,
+    "criticidade": 3
+  },
+  {
+    "codigo": "T03",
+    "dominio": "Transparência e Explicabilidade",
+    "criterio": "Variáveis utilizadas",
+    "verificacao": "Entradas utilizadas pelo modelo são conhecidas/documentadas?",
+    "peso": 2,
+    "criticidade": 3
+  },
+  {
+    "codigo": "T04",
+    "dominio": "Transparência e Explicabilidade",
+    "criterio": "Explicabilidade das saídas",
+    "verificacao": "Existe mecanismo para explicar resultados relevantes?",
+    "peso": 3,
+    "criticidade": 4
+  },
+  {
+    "codigo": "T05",
+    "dominio": "Transparência e Explicabilidade",
+    "criterio": "Interpretabilidade para usuários",
+    "verificacao": "O resultado pode ser compreendido adequadamente pelos usuários e responsáveis pela decisão?",
+    "peso": 3,
+    "criticidade": 4
+  },
+  {
+    "codigo": "T06",
+    "dominio": "Transparência e Explicabilidade",
+    "criterio": "Comunicação das limitações",
+    "verificacao": "Limitações e condições de uso são explicitamente comunicadas?",
+    "peso": 3,
+    "criticidade": 4
+  },
+  {
+    "codigo": "T07",
+    "dominio": "Transparência e Explicabilidade",
+    "criterio": "Comunicação de desempenho",
+    "verificacao": "Métricas e incertezas do modelo são apresentadas de forma compreensível?",
+    "peso": 2,
+    "criticidade": 3
+  },
+  {
+    "codigo": "T08",
+    "dominio": "Transparência e Explicabilidade",
+    "criterio": "Justificabilidade das decisões",
+    "verificacao": "É possível reconstruir/justificar uma decisão apoiada pela IA?",
+    "peso": 3,
+    "criticidade": 4
+  },
+  {
+    "codigo": "R01",
+    "dominio": "Robustez Técnica e Monitoramento",
+    "criterio": "Desempenho global",
+    "verificacao": "O modelo apresenta desempenho adequado à finalidade proposta?",
+    "peso": 3,
+    "criticidade": 4
+  },
+  {
+    "codigo": "R02",
+    "dominio": "Robustez Técnica e Monitoramento",
+    "criterio": "Sensibilidade e especificidade",
+    "verificacao": "As métricas são adequadas ao nível de risco da aplicação da aplicação?",
+    "peso": 3,
+    "criticidade": 4
+  },
+  {
+    "codigo": "R03",
+    "dominio": "Robustez Técnica e Monitoramento",
+    "criterio": "Discriminação",
+    "verificacao": "A capacidade discriminativa do modelo é adequada?",
+    "peso": 2,
+    "criticidade": 3
+  },
+  {
+    "codigo": "R04",
+    "dominio": "Robustez Técnica e Monitoramento",
+    "criterio": "Calibração",
+    "verificacao": "As probabilidades previstas correspondem adequadamente aos riscos observados?",
+    "peso": 3,
+    "criticidade": 4
+  },
+  {
+    "codigo": "R05",
+    "dominio": "Robustez Técnica e Monitoramento",
+    "criterio": "Desempenho por grupos e contextos",
+    "verificacao": "O desempenho permanece adequado entre diferentes grupos?",
+    "peso": 3,
+    "criticidade": 4
+  },
+  {
+    "codigo": "R06",
+    "dominio": "Robustez Técnica e Monitoramento",
+    "criterio": "Equidade algorítmica",
+    "verificacao": "Existem diferenças sistemáticas que possam prejudicar determinados grupos?",
+    "peso": 3,
+    "criticidade": 4
+  },
+  {
+    "codigo": "R07",
+    "dominio": "Robustez Técnica e Monitoramento",
+    "criterio": "Generalização e robustez a variações",
+    "verificacao": "O desempenho é mantido em grupos/contextos diferentes e permanece estável diante de variações plausíveis nos dados/contexto?",
+    "peso": 3,
+    "criticidade": 4
+  },
+  {
+    "codigo": "R08",
+    "dominio": "Robustez Técnica e Monitoramento",
+    "criterio": "Monitoramento contínuo",
+    "verificacao": "O desempenho é acompanhado após implementação?",
+    "peso": 3,
+    "criticidade": 4
+  }
+]
