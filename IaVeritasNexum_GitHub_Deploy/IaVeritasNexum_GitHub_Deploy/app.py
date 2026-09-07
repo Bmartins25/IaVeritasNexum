@@ -2,7 +2,6 @@ import json
 import sqlite3
 from datetime import datetime
 from pathlib import Path
-from urllib.parse import quote
 
 import pandas as pd
 import altair as alt
@@ -393,64 +392,64 @@ label, [data-testid="stWidgetLabel"] p {color:var(--vx-text) !important;font-wei
   width:75%;left:12%;top:50%;opacity:.65;
 }
 
-/* Menu mobile */
-.vx-mobile-drawer {display:none;}
+/* Menu mobile: abre sobre a mesma tela e fecha automaticamente após a escolha */
+.st-key-vx_mobile_nav {display:none;}
+
 @media (max-width: 850px) {
   .vx-reality{grid-template-columns:1fr;gap:1.5rem}
   .vx-ai-scene{min-height:300px}
   .vx-home{min-height:auto;padding-top:2.2rem}
   .vx-home-title{font-size:clamp(2.4rem,12vw,4.2rem)}
 }
+
 @media (max-width: 768px) {
+  /* Mantém o menu lateral desktop oculto no celular */
   [data-testid="stSidebar"] {display:none !important;}
   [data-testid="collapsedControl"] {display:none !important;}
   button[data-testid="stBaseButton-headerNoPadding"] {display:none !important;}
-  header[data-testid="stHeader"] {height:.35rem !important;min-height:.35rem !important;background:transparent !important;}
-
-  .vx-mobile-drawer {display:block !important;position:fixed;left:.7rem;top:.7rem;z-index:10000;}
-  .vx-mobile-drawer summary {
-    list-style:none;cursor:pointer;width:44px;height:44px;border-radius:13px;
-    display:flex;align-items:center;justify-content:center;
-    background:var(--vx-navy);color:#fff;
-    box-shadow:0 8px 22px rgba(11,29,53,.25);
-    font-size:1.45rem;font-weight:800;
-    border:1px solid var(--vx-gold);user-select:none;
-  }
-  .vx-mobile-drawer summary::-webkit-details-marker {display:none;}
-  .vx-mobile-drawer[open] summary {
-    position:fixed;left:calc(min(82vw, 310px) - 3.3rem);top:1rem;
-    background:rgba(197,154,61,.18);box-shadow:none;
-  }
-  .vx-mobile-panel {
-    position:fixed;left:0;top:0;bottom:0;width:min(82vw,310px);overflow-y:auto;
-    padding:1.1rem 1rem 1.5rem;
-    background:linear-gradient(180deg,#08182E 0%,#0B1D35 58%,#132B4B 100%);
-    border-right:1px solid rgba(197,154,61,.34);
-    box-shadow:12px 0 32px rgba(5,20,40,.30);
-  }
-  .vx-mobile-brand {padding-right:3rem;margin-bottom:1.1rem;}
-  .vx-mobile-brand strong {
-    display:block;color:#fff;font-family:Georgia,"Times New Roman",serif;
-    font-size:1.15rem;letter-spacing:.02em;
-  }
-  .vx-mobile-brand span {display:block;color:#D5BC7C;font-size:.78rem;margin-top:.18rem;}
-  .vx-mobile-section {
-    margin:1rem .45rem .35rem;color:#D5BC7C;
-    font-size:.67rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;
-  }
-  .vx-mobile-link {
-    display:block;color:#fff !important;text-decoration:none !important;
-    padding:.72rem .78rem;margin:.12rem 0;border-radius:10px;
-    font-size:.93rem;font-weight:650;border:1px solid transparent;
-  }
-  .vx-mobile-link:hover {background:rgba(197,154,61,.13);border-color:rgba(214,184,102,.25);}
-  .vx-mobile-link.active {
-    background:var(--vx-gold);color:var(--vx-navy) !important;
-    font-weight:800;box-shadow:0 5px 14px rgba(0,0,0,.12);
+  header[data-testid="stHeader"] {
+    height:.35rem !important;
+    min-height:.35rem !important;
+    background:transparent !important;
   }
 
-  .block-container {padding-top:1.05rem !important;padding-left:1rem !important;padding-right:1rem !important;}
-  .vx-home {padding:2.6rem .15rem 3rem !important;}
+  /* Botão de menu mobile */
+  .st-key-vx_mobile_nav {
+    display:block !important;
+    position:fixed !important;
+    left:.7rem !important;
+    top:.7rem !important;
+    z-index:10000 !important;
+    width:auto !important;
+  }
+
+  .st-key-vx_mobile_nav [data-testid="stPopover"] > button,
+  .st-key-vx_mobile_nav button[kind="secondary"] {
+    width:46px !important;
+    min-width:46px !important;
+    height:46px !important;
+    padding:0 !important;
+    border-radius:13px !important;
+    background:var(--vx-navy) !important;
+    border:1px solid var(--vx-gold) !important;
+    color:#FFFFFF !important;
+    box-shadow:0 8px 22px rgba(11,29,53,.25) !important;
+    font-size:1.35rem !important;
+    font-weight:800 !important;
+  }
+
+  .st-key-vx_mobile_nav [data-testid="stPopover"] > button:hover {
+    background:var(--vx-navy-2) !important;
+    color:#FFFFFF !important;
+  }
+
+  /* Conteúdo permanece responsivo na mesma tela */
+  .block-container {
+    padding-top:4.1rem !important;
+    padding-left:1rem !important;
+    padding-right:1rem !important;
+  }
+  .vx-home {padding:1.1rem .15rem 3rem !important;}
   .vx-reality {margin:1rem .15rem 3rem !important;}
 }
 
@@ -816,12 +815,6 @@ MENU_GROUPS = [
 if "current_page" not in st.session_state:
     st.session_state.current_page = "Início"
 
-# No mobile, a navegação lateral usa o parâmetro ?page= para abrir a página
-# escolhida imediatamente após o toque no menu.
-ALL_PAGES = [item for _, items in MENU_GROUPS for item in items]
-query_page = st.query_params.get("page")
-if query_page in ALL_PAGES:
-    st.session_state.current_page = query_page
 
 with st.sidebar:
     st.markdown(
@@ -851,31 +844,46 @@ with st.sidebar:
     st.divider()
     st.caption("Consultoria em IA Responsável • Capacitação • Governança • Diagnóstico")
 
-# Drawer lateral exclusivo para mobile. Os links atualizam ?page=...; ao abrir
-# a nova página, o drawer volta fechado automaticamente.
-mobile_sections = []
-for section, items in MENU_GROUPS:
-    mobile_sections.append(f'<div class="vx-mobile-section">{section}</div>')
-    for item in items:
-        active_class = " active" if st.session_state.current_page == item else ""
-        href = f"?page={quote(item)}"
-        mobile_sections.append(
-            f'<a class="vx-mobile-link{active_class}" href="{href}">{item}</a>'
+
+
+# Menu mobile responsivo.
+# O popover abre sobre a mesma tela; ao selecionar uma opção, st.rerun()
+# fecha automaticamente o menu e renderiza o conteúdo escolhido.
+with st.container(key="vx_mobile_nav"):
+    with st.popover("☰", help="Abrir menu"):
+        st.markdown(
+            """
+            <div style="padding:.15rem .2rem .7rem;">
+              <div style="font-family:Georgia,'Times New Roman',serif;
+                          font-weight:800;font-size:1.08rem;color:#0B1D35;">
+                Veritas Nexum
+              </div>
+              <div style="font-size:.76rem;color:#8A6B2D;margin-top:.12rem;">
+                IA Responsável · Dados · Governança
+              </div>
+            </div>
+            """,
+            unsafe_allow_html=True,
         )
 
-mobile_drawer = f'''
-<details class="vx-mobile-drawer">
-  <summary aria-label="Abrir navegação">☰</summary>
-  <nav class="vx-mobile-panel">
-    <div class="vx-mobile-brand">
-      <strong>Veritas Nexum</strong>
-      <span>IA Responsável · Dados · Governança</span>
-    </div>
-    {''.join(mobile_sections)}
-  </nav>
-</details>
-'''
-st.markdown(mobile_drawer, unsafe_allow_html=True)
+        for section, items in MENU_GROUPS:
+            st.markdown(
+                f"<div style='margin:.6rem .15rem .25rem;color:#9B7426;"
+                f"font-size:.68rem;font-weight:800;letter-spacing:.11em;"
+                f"text-transform:uppercase;'>{section}</div>",
+                unsafe_allow_html=True,
+            )
+            for item in items:
+                active = st.session_state.current_page == item
+                if st.button(
+                    item,
+                    key=f"mobile_nav_{item}",
+                    use_container_width=True,
+                    type="primary" if active else "secondary",
+                ):
+                    st.session_state.current_page = item
+                    st.rerun()
+
 
 page = st.session_state.current_page
 
