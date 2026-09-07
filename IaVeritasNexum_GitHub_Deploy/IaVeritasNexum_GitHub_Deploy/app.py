@@ -1059,6 +1059,7 @@ elif page == "Fundador":
         st.write("Profissional com experiência em Ciência e Análise de Dados, Machine Learning, Analytics e Inteligência Artificial, com atuação nos setores financeiro, seguros, indústria e saúde.")
         st.write("Mestre em Inovação Tecnológica pela UFMG, professor universitário e pesquisador em IA Responsável, com foco em governança, riscos, transparência e conformidade.")
         st.write("Fundador da Veritas Nexum – IA Responsável, iniciativa dedicada à capacitação e orientação de profissionais e organizações para o uso consciente, seguro e responsável da Inteligência Artificial.")
+        st.info("**Criador do FAC-IA Saúde** — framework voltado à avaliação, governança e uso responsável de Inteligência Artificial em saúde, desenvolvido no contexto de sua pesquisa acadêmica. O FAC-IA Saúde é uma iniciativa acadêmica e permanece separado dos serviços e materiais institucionais da Veritas Nexum.")
         st.markdown("[LinkedIn de Bruno Bartolomeu](https://www.linkedin.com/in/bruno-bartolomeu-39628a163/)")
     with c2:
         if FOUNDER_PHOTO.exists():
@@ -1073,9 +1074,7 @@ elif page == "Contato":
         st.markdown("**📍 Localização**")
         st.write("Belo Horizonte - MG | Atendimento Nacional e Internacional")
         st.markdown("**✉️ E-mail**")
-        st.markdown("[bbartolomeu.net@gmail.com](mailto:bbartolomeu.net@gmail.com)")
-        st.markdown("**🔗 LinkedIn**")
-        st.markdown("[linkedin.com/in/bruno-bartolomeu-39628a163](https://www.linkedin.com/in/bruno-bartolomeu-39628a163/)")
+        st.markdown("[iaveritasnexum@gmail.com](mailto:iaveritasnexum@gmail.com)")
     with c2:
         st.markdown("**Principais frentes**")
         st.write("• Capacitação e letramento em IA\n\n• Palestras e workshops\n\n• Boas práticas de IA Responsável\n\n• Diagnóstico orientativo\n\n• Governança e gestão de riscos\n\n• Apoio à estruturação de políticas e práticas internas")
@@ -1102,7 +1101,7 @@ elif page == "Contato":
                 subject = urllib.parse.quote("Contato Veritas Nexum - IA Responsável")
                 body = urllib.parse.quote(f"Olá, Bruno.\n\nNome: {nome}\nE-mail: {email}\nTelefone/WhatsApp: {telefone}\nCargo: {cargo}\nEmpresa/Instituição: {organizacao}\nSetor: {setor}\nInteresse: {interesse}\n\nDesafio/necessidade: {mensagem}")
                 st.success("Dados preparados. Clique abaixo para abrir seu aplicativo de e-mail.")
-                st.markdown(f"[**Enviar solicitação por e-mail**](mailto:bbartolomeu.net@gmail.com?subject={subject}&body={body})")
+                st.markdown(f"[**Enviar solicitação por e-mail**](mailto:iaveritasnexum@gmail.com?subject={subject}&body={body})")
 
 st.divider()
 st.markdown("<div class='vx-footer'>Veritas Nexum – IA Responsável • Capacitação • Consultoria • Governança • Tecnologia com responsabilidade</div>", unsafe_allow_html=True)
