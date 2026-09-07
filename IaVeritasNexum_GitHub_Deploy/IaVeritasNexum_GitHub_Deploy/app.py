@@ -392,8 +392,11 @@ label, [data-testid="stWidgetLabel"] p {color:var(--vx-text) !important;font-wei
   width:75%;left:12%;top:50%;opacity:.65;
 }
 
-/* Menu mobile: abre sobre a mesma tela e fecha automaticamente após a escolha */
-.st-key-vx_mobile_nav {display:none;}
+/* Menu mobile: painel controlado por session_state */
+.st-key-vx_mobile_menu_toggle,
+.st-key-vx_mobile_menu_panel {
+  display:none;
+}
 
 @media (max-width: 850px) {
   .vx-reality{grid-template-columns:1fr;gap:1.5rem}
@@ -403,7 +406,7 @@ label, [data-testid="stWidgetLabel"] p {color:var(--vx-text) !important;font-wei
 }
 
 @media (max-width: 768px) {
-  /* Mantém o menu lateral desktop oculto no celular */
+  /* Sidebar desktop oculto no celular */
   [data-testid="stSidebar"] {display:none !important;}
   [data-testid="collapsedControl"] {display:none !important;}
   button[data-testid="stBaseButton-headerNoPadding"] {display:none !important;}
@@ -413,18 +416,17 @@ label, [data-testid="stWidgetLabel"] p {color:var(--vx-text) !important;font-wei
     background:transparent !important;
   }
 
-  /* Botão de menu mobile */
-  .st-key-vx_mobile_nav {
+  /* Botão flutuante abre/fecha menu */
+  .st-key-vx_mobile_menu_toggle {
     display:block !important;
     position:fixed !important;
     left:.7rem !important;
     top:.7rem !important;
-    z-index:10000 !important;
-    width:auto !important;
+    z-index:10020 !important;
+    width:46px !important;
   }
 
-  .st-key-vx_mobile_nav [data-testid="stPopover"] > button,
-  .st-key-vx_mobile_nav button[kind="secondary"] {
+  .st-key-vx_mobile_menu_toggle button {
     width:46px !important;
     min-width:46px !important;
     height:46px !important;
@@ -434,16 +436,71 @@ label, [data-testid="stWidgetLabel"] p {color:var(--vx-text) !important;font-wei
     border:1px solid var(--vx-gold) !important;
     color:#FFFFFF !important;
     box-shadow:0 8px 22px rgba(11,29,53,.25) !important;
-    font-size:1.35rem !important;
+    font-size:1.25rem !important;
     font-weight:800 !important;
   }
 
-  .st-key-vx_mobile_nav [data-testid="stPopover"] > button:hover {
+  .st-key-vx_mobile_menu_toggle button:hover {
     background:var(--vx-navy-2) !important;
     color:#FFFFFF !important;
   }
 
-  /* Conteúdo permanece responsivo na mesma tela */
+  /* Painel overlay; some completamente quando show_mobile_menu=False */
+  .st-key-vx_mobile_menu_panel {
+    display:block !important;
+    position:fixed !important;
+    left:0 !important;
+    top:0 !important;
+    bottom:0 !important;
+    z-index:10010 !important;
+    width:min(86vw, 330px) !important;
+    overflow-y:auto !important;
+    padding:4.7rem 1rem 1.4rem !important;
+    background:linear-gradient(180deg,#08182E 0%,#0B1D35 58%,#132B4B 100%) !important;
+    border-right:1px solid rgba(197,154,61,.35) !important;
+    box-shadow:12px 0 32px rgba(5,20,40,.30) !important;
+  }
+
+  .st-key-vx_mobile_menu_panel > div {
+    background:transparent !important;
+  }
+
+  .vx-mobile-menu-head {
+    padding:.1rem .2rem .75rem;
+    border-bottom:1px solid rgba(197,154,61,.25);
+    margin-bottom:.45rem;
+  }
+
+  .vx-mobile-menu-brand {
+    font-family:Georgia,'Times New Roman',serif;
+    font-weight:800;
+    font-size:1.12rem;
+    color:#FFFFFF;
+  }
+
+  .vx-mobile-menu-sub {
+    font-size:.75rem;
+    color:#D6B866;
+    margin-top:.15rem;
+  }
+
+  .vx-mobile-menu-section {
+    margin:.72rem .15rem .28rem;
+    color:#D6B866;
+    font-size:.68rem;
+    font-weight:800;
+    letter-spacing:.11em;
+    text-transform:uppercase;
+  }
+
+  .st-key-vx_mobile_menu_panel .stButton > button {
+    min-height:2.75rem !important;
+    text-align:left !important;
+    justify-content:flex-start !important;
+    border-radius:10px !important;
+  }
+
+  /* Conteúdo sempre permanece na mesma tela */
   .block-container {
     padding-top:4.1rem !important;
     padding-left:1rem !important;
@@ -846,21 +903,27 @@ with st.sidebar:
 
 
 
-# Menu mobile responsivo.
-# O popover abre sobre a mesma tela; ao selecionar uma opção, st.rerun()
-# fecha automaticamente o menu e renderiza o conteúdo escolhido.
-with st.container(key="vx_mobile_nav"):
-    with st.popover("☰", help="Abrir menu"):
+# Menu mobile responsivo com estado controlado.
+# Ao escolher uma opção, show_mobile_menu=False e o painel deixa de ser renderizado.
+if "show_mobile_menu" not in st.session_state:
+    st.session_state.show_mobile_menu = False
+
+with st.container(key="vx_mobile_menu_toggle"):
+    if st.button(
+        "✕" if st.session_state.show_mobile_menu else "☰",
+        key="vx_mobile_toggle_btn",
+        help="Fechar menu" if st.session_state.show_mobile_menu else "Abrir menu",
+    ):
+        st.session_state.show_mobile_menu = not st.session_state.show_mobile_menu
+        st.rerun()
+
+if st.session_state.show_mobile_menu:
+    with st.container(key="vx_mobile_menu_panel"):
         st.markdown(
             """
-            <div style="padding:.15rem .2rem .7rem;">
-              <div style="font-family:Georgia,'Times New Roman',serif;
-                          font-weight:800;font-size:1.08rem;color:#0B1D35;">
-                Veritas Nexum
-              </div>
-              <div style="font-size:.76rem;color:#8A6B2D;margin-top:.12rem;">
-                IA Responsável · Dados · Governança
-              </div>
+            <div class="vx-mobile-menu-head">
+              <div class="vx-mobile-menu-brand">Veritas Nexum</div>
+              <div class="vx-mobile-menu-sub">IA Responsável · Dados · Governança</div>
             </div>
             """,
             unsafe_allow_html=True,
@@ -868,9 +931,7 @@ with st.container(key="vx_mobile_nav"):
 
         for section, items in MENU_GROUPS:
             st.markdown(
-                f"<div style='margin:.6rem .15rem .25rem;color:#9B7426;"
-                f"font-size:.68rem;font-weight:800;letter-spacing:.11em;"
-                f"text-transform:uppercase;'>{section}</div>",
+                f"<div class='vx-mobile-menu-section'>{section}</div>",
                 unsafe_allow_html=True,
             )
             for item in items:
@@ -882,6 +943,7 @@ with st.container(key="vx_mobile_nav"):
                     type="primary" if active else "secondary",
                 ):
                     st.session_state.current_page = item
+                    st.session_state.show_mobile_menu = False
                     st.rerun()
 
 
