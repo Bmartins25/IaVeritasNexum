@@ -882,6 +882,88 @@ if page == "Início":
         unsafe_allow_html=True,
     )
 
+    st.markdown("---")
+    st.markdown(
+        """
+        <div style="margin-top:1.1rem;margin-bottom:.6rem">
+          <div style="font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;
+                      font-weight:800;color:#C59A3D;margin-bottom:.55rem;">
+            IA EM NÚMEROS
+          </div>
+          <h2 style="margin:0;color:#0B1D35;font-family:Georgia,'Times New Roman',serif;">
+            A adoção cresce rapidamente — e a transformação continua até 2030
+          </h2>
+          <p style="color:#5C6572;max-width:920px;line-height:1.7;margin-top:.65rem;">
+            Os indicadores abaixo usam dados publicados por Stanford HAI, McKinsey e World Economic Forum.
+            Eles mostram adoção organizacional observada e expectativas empresariais para 2030.
+          </p>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+
+    c_ai1, c_ai2 = st.columns([1.25, 1], gap="large")
+
+    with c_ai1:
+        st.markdown("### Adoção organizacional de IA")
+        adoption_df = pd.DataFrame({
+            "Ano": [2023, 2024, 2025],
+            "Organizações que usam IA (%)": [55, 78, 88],
+        }).set_index("Ano")
+        st.line_chart(adoption_df, height=320)
+        st.caption(
+            "2023: 55% • 2024: 78% • 2025: 88%. "
+            "Indicador: organizações pesquisadas que relataram uso de IA em pelo menos uma função de negócio."
+        )
+        st.markdown(
+            """
+            <div class="vx-card">
+              <strong style="color:#0B1D35">Leitura:</strong>
+              <span style="color:#5C6572">
+                em dois anos, o uso reportado de IA passou de pouco mais da metade das organizações
+                para quase nove em cada dez.
+              </span>
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
+
+    with c_ai2:
+        st.markdown("### Perspectiva até 2030")
+        outlook_df = pd.DataFrame({
+            "Indicador": ["Empresas que esperam transformação por IA até 2030"],
+            "Percentual": [86],
+        }).set_index("Indicador")
+        st.bar_chart(outlook_df, height=230)
+        st.metric(
+            "Impacto econômico potencial da IA em 2030",
+            "até US$ 15,7 tri",
+            help="Estimativa global publicada pela PwC."
+        )
+        st.caption(
+            "86% dos empregadores pesquisados pelo World Economic Forum esperam que IA e "
+            "tecnologias de processamento de informação transformem seus negócios até 2030."
+        )
+
+    st.markdown(
+        """
+        <div style="margin-top:1.1rem;padding:1rem 1.1rem;border:1px solid #E4DDCF;
+                    background:#FBF8F0;border-radius:14px;color:#5C6572;line-height:1.65;">
+          <strong style="color:#0B1D35">Fontes:</strong><br>
+          • Stanford HAI — <a href="https://hai.stanford.edu/ai-index/2025-ai-index-report" target="_blank">
+            AI Index Report 2025</a> (55% em 2023; 78% em 2024).<br>
+          • Stanford HAI — <a href="https://hai.stanford.edu/ai-index/2026-ai-index-report/economy" target="_blank">
+            AI Index Report 2026</a> (88% em 2025).<br>
+          • World Economic Forum — <a href="https://www.weforum.org/publications/the-future-of-jobs-report-2025/" target="_blank">
+            Future of Jobs Report 2025</a> (86% até 2030).<br>
+          • PwC — <a href="https://www.pwc.com/us/en/tech-effect/ai-analytics/scaling-ai-capabilities-with-generative-investment.html" target="_blank">
+            impacto econômico potencial da IA em 2030</a> (até US$ 15,7 trilhões).
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+
+
 elif page == "Sistemas avaliados":
     st.title("Sistemas avaliados")
     st.caption("Registre sistemas, modelos ou aplicações de IA para apoiar diagnósticos orientativos e atividades de capacitação da Veritas Nexum.")
