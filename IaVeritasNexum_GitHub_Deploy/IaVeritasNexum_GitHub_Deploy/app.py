@@ -2,6 +2,7 @@ import json
 import sqlite3
 from datetime import datetime
 from pathlib import Path
+from urllib.parse import quote
 
 import pandas as pd
 import altair as alt
@@ -401,79 +402,31 @@ label, [data-testid="stWidgetLabel"] p {color:var(--vx-text) !important;font-wei
   .vx-home-title{font-size:clamp(2.4rem,12vw,4.2rem)}
 }
 @media (max-width: 768px) {
-  /* Mobile: usa o drawer nativo do Streamlit.
-     Assim o menu abre sobre a MESMA tela e os botões apenas rerenderizam o conteúdo. */
-  [data-testid="stSidebar"] {
-    display:block !important;
-    width:min(86vw, 320px) !important;
-    min-width:min(86vw, 320px) !important;
-    max-width:min(86vw, 320px) !important;
-  }
+  [data-testid="stSidebar"] {display:none !important;}
+  [data-testid="collapsedControl"] {display:none !important;}
+  button[data-testid="stBaseButton-headerNoPadding"] {display:none !important;}
+  header[data-testid="stHeader"] {height:.35rem !important;min-height:.35rem !important;background:transparent !important;}
 
-  [data-testid="stSidebar"] > div:first-child {
-    width:min(86vw, 320px) !important;
-    padding-top:.7rem !important;
+  .vx-mobile-drawer {display:block !important;position:fixed;left:.7rem;top:.7rem;z-index:10000;}
+  .vx-mobile-drawer summary {
+    list-style:none;cursor:pointer;width:44px;height:44px;border-radius:13px;
+    display:flex;align-items:center;justify-content:center;
+    background:var(--vx-navy);color:#fff;
+    box-shadow:0 8px 22px rgba(11,29,53,.25);
+    font-size:1.45rem;font-weight:800;
+    border:1px solid var(--vx-gold);user-select:none;
   }
-
-  [data-testid="collapsedControl"] {
-    display:flex !important;
-    position:fixed !important;
-    left:.7rem !important;
-    top:.7rem !important;
-    z-index:10001 !important;
-    width:44px !important;
-    height:44px !important;
-    border-radius:13px !important;
-    background:var(--vx-navy) !important;
-    border:1px solid var(--vx-gold) !important;
-    box-shadow:0 8px 22px rgba(11,29,53,.25) !important;
+  .vx-mobile-drawer summary::-webkit-details-marker {display:none;}
+  .vx-mobile-drawer[open] summary {
+    position:fixed;left:calc(min(82vw, 310px) - 3.3rem);top:1rem;
+    background:rgba(197,154,61,.18);box-shadow:none;
   }
-
-  [data-testid="collapsedControl"] svg {
-    color:#FFFFFF !important;
-    fill:#FFFFFF !important;
-  }
-
-  button[data-testid="stBaseButton-headerNoPadding"] {
-    display:flex !important;
-  }
-
-  header[data-testid="stHeader"] {
-    height:3.7rem !important;
-    min-height:3.7rem !important;
-    background:rgba(248,246,241,.94) !important;
-    backdrop-filter:blur(8px);
-  }
-
-  .block-container {
-    padding-top:4.3rem !important;
-    padding-left:1rem !important;
-    padding-right:1rem !important;
-  }
-
-  [data-testid="stSidebar"] .stButton > button {
-    min-height:2.8rem !important;
-    font-size:.95rem !important;
-  }
-
-  .vx-home,
-  .vx-reality,
-  .vx-card {
-    max-width:100% !important;
-  }
-
-  .vx-home {
-    padding-left:.15rem !important;
-    padding-right:.15rem !important;
-  }
-
-  .vx-home-values {
-    gap:.45rem !important;
-  }
-
-  .vx-home-values span {
-    font-size:.78rem !important;
-    padding:.45rem .68rem !important;
+  .vx-mobile-panel {
+    position:fixed;left:0;top:0;bottom:0;width:min(82vw,310px);overflow-y:auto;
+    padding:1.1rem 1rem 1.5rem;
+    background:linear-gradient(180deg,#08182E 0%,#0B1D35 58%,#132B4B 100%);
+    border-right:1px solid rgba(197,154,61,.34);
+    box-shadow:12px 0 32px rgba(5,20,40,.30);
   }
   .vx-mobile-brand {padding-right:3rem;margin-bottom:1.1rem;}
   .vx-mobile-brand strong {
@@ -863,6 +816,12 @@ MENU_GROUPS = [
 if "current_page" not in st.session_state:
     st.session_state.current_page = "Início"
 
+# No mobile, a navegação lateral usa o parâmetro ?page= para abrir a página
+# escolhida imediatamente após o toque no menu.
+ALL_PAGES = [item for _, items in MENU_GROUPS for item in items]
+query_page = st.query_params.get("page")
+if query_page in ALL_PAGES:
+    st.session_state.current_page = query_page
 
 with st.sidebar:
     st.markdown(
@@ -888,11 +847,35 @@ with st.sidebar:
                 type="primary" if active else "secondary",
             ):
                 st.session_state.current_page = item
-                st.rerun()
 
     st.divider()
     st.caption("Consultoria em IA Responsável • Capacitação • Governança • Diagnóstico")
 
+# Drawer lateral exclusivo para mobile. Os links atualizam ?page=...; ao abrir
+# a nova página, o drawer volta fechado automaticamente.
+mobile_sections = []
+for section, items in MENU_GROUPS:
+    mobile_sections.append(f'<div class="vx-mobile-section">{section}</div>')
+    for item in items:
+        active_class = " active" if st.session_state.current_page == item else ""
+        href = f"?page={quote(item)}"
+        mobile_sections.append(
+            f'<a class="vx-mobile-link{active_class}" href="{href}">{item}</a>'
+        )
+
+mobile_drawer = f'''
+<details class="vx-mobile-drawer">
+  <summary aria-label="Abrir navegação">☰</summary>
+  <nav class="vx-mobile-panel">
+    <div class="vx-mobile-brand">
+      <strong>Veritas Nexum</strong>
+      <span>IA Responsável · Dados · Governança</span>
+    </div>
+    {''.join(mobile_sections)}
+  </nav>
+</details>
+'''
+st.markdown(mobile_drawer, unsafe_allow_html=True)
 
 page = st.session_state.current_page
 
