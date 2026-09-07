@@ -135,7 +135,7 @@ button[kind="primary"], .stButton > button[kind="primary"],
   border-color:var(--vx-gold) !important;
   box-shadow:0 0 0 1px var(--vx-gold) !important;
 }
-[data-baseweb="select"] > div {background:#FFFFFF !important;color:var(--vx-text) !important;border-color:#CFC6B6 !important;}
+[data-baseweb="select"] > div {background:#F8F6F1 !important;color:var(--vx-navy) !important;border-color:#D9D0BE !important;}
 [data-baseweb="select"] * {color:var(--vx-text) !important;}
 label, [data-testid="stWidgetLabel"] p {color:var(--vx-text) !important;font-weight:600;}
 .stForm {
@@ -451,38 +451,40 @@ label, [data-testid="stWidgetLabel"] p {color:var(--vx-text) !important;font-wei
   .vx-reality {margin:1rem .15rem 3rem !important;}
 }
 
-/* ===== Correção de legibilidade dos campos Setor / Principal interesse / Autorização ===== */
+/* ===== Campos claros: Setor / Principal interesse / Autorização ===== */
 
 /* Selectbox fechado */
 div[data-baseweb="select"] > div,
 div[data-baseweb="select"] div[role="button"] {
-  background:#FFFFFF !important;
-  color:var(--vx-text) !important;
-  -webkit-text-fill-color:var(--vx-text) !important;
-  border:1px solid #CFC6B6 !important;
+  background:#F8F6F1 !important;
+  color:var(--vx-navy) !important;
+  -webkit-text-fill-color:var(--vx-navy) !important;
+  border:1px solid #D9D0BE !important;
+  box-shadow:none !important;
 }
 
-/* Texto do selectbox */
+/* Texto e ícones do selectbox */
 div[data-baseweb="select"] span,
 div[data-baseweb="select"] input,
 div[data-baseweb="select"] svg {
-  color:var(--vx-text) !important;
-  fill:var(--vx-text) !important;
-  -webkit-text-fill-color:var(--vx-text) !important;
+  color:var(--vx-navy) !important;
+  fill:var(--vx-navy) !important;
+  -webkit-text-fill-color:var(--vx-navy) !important;
 }
 
-/* Menu suspenso dos selectboxes */
+/* Menu suspenso */
 div[role="listbox"],
 ul[role="listbox"],
 [data-baseweb="popover"] > div,
 [data-baseweb="menu"] {
-  background:#FFFFFF !important;
+  background:#FFFDF8 !important;
   color:var(--vx-text) !important;
+  border:1px solid #E3D9C6 !important;
 }
 
 div[role="option"],
 li[role="option"] {
-  background:#FFFFFF !important;
+  background:#FFFDF8 !important;
   color:var(--vx-text) !important;
 }
 
@@ -490,34 +492,51 @@ div[role="option"]:hover,
 li[role="option"]:hover,
 div[aria-selected="true"][role="option"],
 li[aria-selected="true"][role="option"] {
-  background:#F5EFE3 !important;
+  background:#EFE7D8 !important;
   color:var(--vx-navy) !important;
+}
+
+/* Expander / cabeçalhos internos */
+[data-testid="stExpander"] details > summary {
+  background:#F6F1E7 !important;
+  color:var(--vx-navy) !important;
+  border-radius:10px !important;
+}
+[data-testid="stExpander"] details > summary:hover {
+  background:#EEE3CF !important;
 }
 
 /* Checkbox */
 [data-testid="stCheckbox"] {
   background:transparent !important;
 }
-
 [data-testid="stCheckbox"] label,
 [data-testid="stCheckbox"] label p,
 [data-testid="stCheckbox"] span {
   color:var(--vx-text) !important;
   -webkit-text-fill-color:var(--vx-text) !important;
 }
-
-/* Caixa desmarcada: branca e bem visível */
 [data-testid="stCheckbox"] input + div,
 [data-testid="stCheckbox"] [data-baseweb="checkbox"] > div:first-child {
-  background:#FFFFFF !important;
-  border:2px solid #AFA493 !important;
+  background:#FFFDF8 !important;
+  border:2px solid #C9BFAE !important;
 }
-
-/* Caixa marcada: dourado institucional */
 [data-testid="stCheckbox"] input:checked + div,
 [data-testid="stCheckbox"] [aria-checked="true"] > div:first-child {
   background:var(--vx-gold) !important;
   border-color:var(--vx-gold) !important;
+}
+
+/* Inputs e textarea */
+.stTextInput input,
+.stNumberInput input,
+.stTextArea textarea,
+[data-baseweb="input"] input,
+[data-baseweb="textarea"] textarea {
+  background:#FFFDF8 !important;
+  color:var(--vx-text) !important;
+  -webkit-text-fill-color:var(--vx-text) !important;
+  border:1px solid #D9D0BE !important;
 }
 
 /* Garantir contraste dos labels de formulário */
