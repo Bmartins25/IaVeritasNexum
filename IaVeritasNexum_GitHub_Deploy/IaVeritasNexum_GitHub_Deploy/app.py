@@ -1432,7 +1432,7 @@ elif page == "Fundador":
     c1, c2 = st.columns([2.2, 1], vertical_alignment="center")
     with c1:
         st.markdown("## Bruno Bartolomeu")
-        st.markdown("**Especialista em Dados, Inteligência Artificial e IA Responsável.**")
+        st.markdown("**Tecnologia, Dados e Inteligência Artificial Responsável**")
         st.write("Profissional com 10 anos de experiência em Tecnologia, com atuação em Ciência e Análise de Dados, Machine Learning, Analytics e Inteligência Artificial, nos setores financeiro, seguros, indústria e saúde.")
         st.write("Mestrando em Inovação Tecnológica pela UFMG, professor universitário e pesquisador em IA Responsável, com foco em governança, riscos, transparência e conformidade.")
         st.write("Fundador da Veritas Nexum – IA Responsável, iniciativa dedicada à capacitação e orientação de profissionais e organizações para o uso consciente, seguro e responsável da Inteligência Artificial.")
