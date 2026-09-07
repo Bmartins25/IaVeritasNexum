@@ -550,6 +550,43 @@ li[aria-selected="true"][role="option"] {
   color:var(--vx-text) !important;
 }
 
+
+/* Veritas Nexum — feedback de formulários */
+div[data-testid="stAlert"] {
+    border-radius: 12px !important;
+    border-width: 1px !important;
+    border-style: solid !important;
+    box-shadow: 0 4px 14px rgba(11, 29, 53, 0.06) !important;
+}
+div[data-testid="stAlert"] p {
+    font-weight: 650 !important;
+}
+
+/* Sucesso: fundo verde muito suave, texto verde escuro e contraste AA */
+div[data-testid="stAlert"]:has([data-testid="stAlertContentSuccess"]),
+div[data-testid="stAlert"]:has(svg[data-testid="stIconMaterial"]) {
+    color: #14532D;
+}
+
+/* Compatibilidade com versões atuais do Streamlit */
+div[data-baseweb="notification"][kind="positive"],
+div[data-testid="stAlert"][data-baseweb="notification"] {
+    border-color: #86B89A !important;
+}
+
+/* Ajuste específico do alerta de sucesso gerado pelo app */
+.vx-success {
+    background: #E8F3EC;
+    border: 1px solid #8DB79B;
+    border-left: 5px solid #2F6B46;
+    color: #194D30;
+    border-radius: 12px;
+    padding: 16px 18px;
+    margin-top: 14px;
+    font-weight: 650;
+    line-height: 1.55;
+}
+
 </style>
 """,
     unsafe_allow_html=True,
@@ -1380,9 +1417,14 @@ elif page == "Contato":
 
                         resend.Emails.send(params)
 
-                        st.success(
-                            "Solicitação enviada com sucesso para a Veritas Nexum. "
-                            "Entraremos em contato pelos dados informados."
+                        st.markdown(
+                            """
+                            <div class="vx-success">
+                                ✓ Solicitação enviada com sucesso para a Veritas Nexum.
+                                Entraremos em contato pelos dados informados.
+                            </div>
+                            """,
+                            unsafe_allow_html=True,
                         )
                 except Exception as exc:
                     st.error(
