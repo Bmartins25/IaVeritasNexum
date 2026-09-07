@@ -5,6 +5,7 @@ from pathlib import Path
 from urllib.parse import quote
 
 import pandas as pd
+import altair as alt
 import streamlit as st
 
 APP_DIR = Path(__file__).resolve().parent
@@ -902,26 +903,96 @@ if page == "Início":
         unsafe_allow_html=True,
     )
 
-    c_ai1, c_ai2 = st.columns([1.25, 1], gap="large")
+    c_ai1, c_ai2 = st.columns([1.18, 1], gap="large")
 
     with c_ai1:
         st.markdown("### Adoção organizacional de IA")
+
         adoption_df = pd.DataFrame({
             "Ano": [2023, 2024, 2025],
-            "Organizações que usam IA (%)": [55, 78, 88],
-        }).set_index("Ano")
-        st.line_chart(adoption_df, height=320)
+            "Adoção": [55, 78, 88],
+        })
+
+        adoption_chart = (
+            alt.Chart(adoption_df)
+            .mark_line(
+                point=alt.OverlayMarkDef(
+                    filled=True,
+                    fill="#C59A3D",
+                    stroke="#0B1D35",
+                    strokeWidth=2,
+                    size=110,
+                ),
+                stroke="#0B1D35",
+                strokeWidth=4,
+            )
+            .encode(
+                x=alt.X(
+                    "Ano:O",
+                    title=None,
+                    axis=alt.Axis(
+                        labelAngle=0,
+                        labelColor="#0B1D35",
+                        labelFontSize=13,
+                        labelFontWeight="bold",
+                        tickColor="#D9D0BE",
+                        domainColor="#D9D0BE",
+                    ),
+                ),
+                y=alt.Y(
+                    "Adoção:Q",
+                    title="Organizações que usam IA (%)",
+                    scale=alt.Scale(domain=[0, 100]),
+                    axis=alt.Axis(
+                        labelColor="#5C6572",
+                        titleColor="#5C6572",
+                        gridColor="#ECE6DA",
+                        tickCount=6,
+                    ),
+                ),
+                tooltip=[
+                    alt.Tooltip("Ano:O", title="Ano"),
+                    alt.Tooltip("Adoção:Q", title="Adoção", format=".0f"),
+                ],
+            )
+            .properties(height=320)
+        )
+
+        labels = (
+            alt.Chart(adoption_df)
+            .mark_text(
+                dy=-18,
+                fontSize=15,
+                fontWeight="bold",
+                color="#0B1D35",
+            )
+            .encode(
+                x="Ano:O",
+                y="Adoção:Q",
+                text=alt.Text("Adoção:Q", format=".0f"),
+            )
+        )
+
+        final_adoption = (adoption_chart + labels).configure_view(
+            stroke=None,
+            fill="#FFFDF8",
+        ).configure(
+            background="#FFFDF8"
+        )
+
+        st.altair_chart(final_adoption, use_container_width=True)
+
         st.caption(
             "2023: 55% • 2024: 78% • 2025: 88%. "
-            "Indicador: organizações pesquisadas que relataram uso de IA em pelo menos uma função de negócio."
+            "Organizações que relataram uso de IA em pelo menos uma função de negócio."
         )
+
         st.markdown(
             """
-            <div class="vx-card">
+            <div class="vx-card" style="border-left:4px solid #C59A3D;">
               <strong style="color:#0B1D35">Leitura:</strong>
               <span style="color:#5C6572">
-                em dois anos, o uso reportado de IA passou de pouco mais da metade das organizações
-                para quase nove em cada dez.
+                em dois anos, a adoção reportada cresceu 33 pontos percentuais.
               </span>
             </div>
             """,
@@ -930,16 +1001,91 @@ if page == "Início":
 
     with c_ai2:
         st.markdown("### Perspectiva até 2030")
+
         outlook_df = pd.DataFrame({
-            "Indicador": ["Empresas que esperam transformação por IA até 2030"],
+            "Indicador": ["Transformação por IA"],
             "Percentual": [86],
-        }).set_index("Indicador")
-        st.bar_chart(outlook_df, height=230)
-        st.metric(
-            "Impacto econômico potencial da IA em 2030",
-            "até US$ 15,7 tri",
-            help="Estimativa global publicada pela PwC."
+        })
+
+        outlook_chart = (
+            alt.Chart(outlook_df)
+            .mark_bar(
+                cornerRadiusTopLeft=12,
+                cornerRadiusTopRight=12,
+                color="#C59A3D",
+                size=90,
+            )
+            .encode(
+                x=alt.X(
+                    "Indicador:N",
+                    title=None,
+                    axis=alt.Axis(
+                        labelColor="#0B1D35",
+                        labelFontSize=13,
+                        labelFontWeight="bold",
+                        labelAngle=0,
+                        ticks=False,
+                        domain=False,
+                    ),
+                ),
+                y=alt.Y(
+                    "Percentual:Q",
+                    title="Empregadores (%)",
+                    scale=alt.Scale(domain=[0, 100]),
+                    axis=alt.Axis(
+                        labelColor="#5C6572",
+                        titleColor="#5C6572",
+                        gridColor="#ECE6DA",
+                        tickCount=6,
+                    ),
+                ),
+                tooltip=[
+                    alt.Tooltip("Indicador:N", title="Indicador"),
+                    alt.Tooltip("Percentual:Q", title="Percentual", format=".0f"),
+                ],
+            )
+            .properties(height=220)
         )
+
+        outlook_label = (
+            alt.Chart(outlook_df)
+            .mark_text(
+                dy=-16,
+                fontSize=24,
+                fontWeight="bold",
+                color="#0B1D35",
+            )
+            .encode(
+                x="Indicador:N",
+                y="Percentual:Q",
+                text=alt.Text("Percentual:Q", format=".0f"),
+            )
+        )
+
+        final_outlook = (outlook_chart + outlook_label).configure_view(
+            stroke=None,
+            fill="#FFFDF8",
+        ).configure(
+            background="#FFFDF8"
+        )
+
+        st.altair_chart(final_outlook, use_container_width=True)
+
+        st.markdown(
+            """
+            <div class="vx-card" style="border-top:4px solid #C59A3D;padding:18px 20px;margin-top:.35rem;">
+              <div style="font-size:.88rem;color:#5C6572;margin-bottom:.25rem;">
+                Impacto econômico potencial da IA em 2030
+              </div>
+              <div style="font-family:Georgia,'Times New Roman',serif;font-size:2.15rem;
+                          line-height:1.1;color:#0B1D35;font-weight:700;">
+                até US$ 15,7 tri
+              </div>
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
+
         st.caption(
             "86% dos empregadores pesquisados pelo World Economic Forum esperam que IA e "
             "tecnologias de processamento de informação transformem seus negócios até 2030."
