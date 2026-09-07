@@ -135,11 +135,7 @@ button[kind="primary"], .stButton > button[kind="primary"],
   border-color:var(--vx-gold) !important;
   box-shadow:0 0 0 1px var(--vx-gold) !important;
 }
-[data-baseweb="select"] > div {
-  background:#FFFFFF !important;
-  color:var(--vx-text) !important;
-  border-color:#D8D0C0 !important;
-}
+[data-baseweb="select"] > div {background:#FFFFFF !important;color:var(--vx-text) !important;border-color:#CFC6B6 !important;}
 [data-baseweb="select"] * {color:var(--vx-text) !important;}
 label, [data-testid="stWidgetLabel"] p {color:var(--vx-text) !important;font-weight:600;}
 .stForm {
@@ -454,6 +450,84 @@ label, [data-testid="stWidgetLabel"] p {color:var(--vx-text) !important;font-wei
   .vx-home {padding:2.6rem .15rem 3rem !important;}
   .vx-reality {margin:1rem .15rem 3rem !important;}
 }
+
+/* ===== Correção de legibilidade dos campos Setor / Principal interesse / Autorização ===== */
+
+/* Selectbox fechado */
+div[data-baseweb="select"] > div,
+div[data-baseweb="select"] div[role="button"] {
+  background:#FFFFFF !important;
+  color:var(--vx-text) !important;
+  -webkit-text-fill-color:var(--vx-text) !important;
+  border:1px solid #CFC6B6 !important;
+}
+
+/* Texto do selectbox */
+div[data-baseweb="select"] span,
+div[data-baseweb="select"] input,
+div[data-baseweb="select"] svg {
+  color:var(--vx-text) !important;
+  fill:var(--vx-text) !important;
+  -webkit-text-fill-color:var(--vx-text) !important;
+}
+
+/* Menu suspenso dos selectboxes */
+div[role="listbox"],
+ul[role="listbox"],
+[data-baseweb="popover"] > div,
+[data-baseweb="menu"] {
+  background:#FFFFFF !important;
+  color:var(--vx-text) !important;
+}
+
+div[role="option"],
+li[role="option"] {
+  background:#FFFFFF !important;
+  color:var(--vx-text) !important;
+}
+
+div[role="option"]:hover,
+li[role="option"]:hover,
+div[aria-selected="true"][role="option"],
+li[aria-selected="true"][role="option"] {
+  background:#F5EFE3 !important;
+  color:var(--vx-navy) !important;
+}
+
+/* Checkbox */
+[data-testid="stCheckbox"] {
+  background:transparent !important;
+}
+
+[data-testid="stCheckbox"] label,
+[data-testid="stCheckbox"] label p,
+[data-testid="stCheckbox"] span {
+  color:var(--vx-text) !important;
+  -webkit-text-fill-color:var(--vx-text) !important;
+}
+
+/* Caixa desmarcada: branca e bem visível */
+[data-testid="stCheckbox"] input + div,
+[data-testid="stCheckbox"] [data-baseweb="checkbox"] > div:first-child {
+  background:#FFFFFF !important;
+  border:2px solid #AFA493 !important;
+}
+
+/* Caixa marcada: dourado institucional */
+[data-testid="stCheckbox"] input:checked + div,
+[data-testid="stCheckbox"] [aria-checked="true"] > div:first-child {
+  background:var(--vx-gold) !important;
+  border-color:var(--vx-gold) !important;
+}
+
+/* Garantir contraste dos labels de formulário */
+.stSelectbox label,
+.stCheckbox label,
+[data-testid="stWidgetLabel"] {
+  background:transparent !important;
+  color:var(--vx-text) !important;
+}
+
 </style>
 """,
     unsafe_allow_html=True,
