@@ -1436,7 +1436,6 @@ elif page == "Fundador":
         st.write("Profissional com 10 anos de experiência em Tecnologia, com atuação em Ciência e Análise de Dados, Machine Learning, Analytics e Inteligência Artificial, nos setores financeiro, seguros, indústria e saúde.")
         st.write("Mestrando em Inovação Tecnológica pela UFMG, professor universitário e pesquisador em IA Responsável, com foco em governança, riscos, transparência e conformidade.")
         st.write("Fundador da Veritas Nexum – IA Responsável, iniciativa dedicada à capacitação e orientação de profissionais e organizações para o uso consciente, seguro e responsável da Inteligência Artificial.")
-        st.info("**Criador do FAC-IA Saúde** — framework voltado à avaliação, governança e uso responsável de Inteligência Artificial em saúde, desenvolvido no contexto de sua pesquisa acadêmica. O FAC-IA Saúde é uma iniciativa acadêmica e permanece separado dos serviços e materiais institucionais da Veritas Nexum.")
         st.markdown("[LinkedIn de Bruno Bartolomeu](https://www.linkedin.com/in/bruno-bartolomeu-39628a163/)")
     with c2:
         if FOUNDER_PHOTO.exists():
