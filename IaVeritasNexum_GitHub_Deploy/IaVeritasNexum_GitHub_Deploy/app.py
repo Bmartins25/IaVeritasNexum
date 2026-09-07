@@ -6,6 +6,8 @@ from urllib.parse import quote
 
 import pandas as pd
 import altair as alt
+import resend
+import html
 import streamlit as st
 
 APP_DIR = Path(__file__).resolve().parent
@@ -1320,16 +1322,73 @@ elif page == "Contato":
         interesse = st.selectbox("Principal interesse *", ["Selecione", "Capacitação / letramento em IA", "Palestra / workshop", "Boas práticas de IA Responsável", "Diagnóstico orientativo", "Governança e gestão de riscos", "Políticas e práticas internas de IA"])
         mensagem = st.text_area("Desafio ou necessidade atual")
         consent = st.checkbox("Autorizo o uso destas informações exclusivamente para contato e análise inicial da solicitação.")
-        sent = st.form_submit_button("Preparar contato", type="primary")
+        sent = st.form_submit_button("Enviar solicitação", type="primary")
         if sent:
             if not nome or not email or not organizacao or interesse == "Selecione" or not consent:
                 st.error("Preencha os campos obrigatórios e marque a autorização.")
+            elif "@" not in email or "." not in email.split("@")[-1]:
+                st.error("Informe um e-mail profissional válido.")
             else:
-                import urllib.parse
-                subject = urllib.parse.quote("Contato Veritas Nexum - IA Responsável")
-                body = urllib.parse.quote(f"Olá, Bruno.\n\nNome: {nome}\nE-mail: {email}\nTelefone/WhatsApp: {telefone}\nCargo: {cargo}\nEmpresa/Instituição: {organizacao}\nSetor: {setor}\nInteresse: {interesse}\n\nDesafio/necessidade: {mensagem}")
-                st.success("Dados preparados. Clique abaixo para abrir seu aplicativo de e-mail.")
-                st.markdown(f"[**Enviar solicitação por e-mail**](mailto:iaveritasnexum@gmail.com?subject={subject}&body={body})")
+                try:
+                    api_key = st.secrets.get("RESEND_API_KEY", "")
+                    from_email = st.secrets.get(
+                        "RESEND_FROM_EMAIL",
+                        "Veritas Nexum <onboarding@resend.dev>"
+                    )
+
+                    if not api_key:
+                        st.error(
+                            "O envio de e-mail ainda não está ativado. "
+                            "Configure RESEND_API_KEY nos Secrets do Streamlit."
+                        )
+                    else:
+                        resend.api_key = api_key
+
+                        def esc(value):
+                            return html.escape(str(value or "Não informado"))
+
+                        email_html = f"""
+                        <div style="font-family:Arial,sans-serif;max-width:720px;margin:auto;color:#182235;">
+                          <div style="background:#0B1D35;padding:22px 26px;border-bottom:4px solid #C59A3D;">
+                            <h2 style="color:#fff;margin:0;">Nova solicitação — Veritas Nexum</h2>
+                          </div>
+                          <div style="padding:24px 26px;background:#fff;border:1px solid #E4DDCF;">
+                            <p><strong>Nome:</strong> {esc(nome)}</p>
+                            <p><strong>E-mail:</strong> {esc(email)}</p>
+                            <p><strong>Telefone / WhatsApp:</strong> {esc(telefone)}</p>
+                            <p><strong>Cargo / função:</strong> {esc(cargo)}</p>
+                            <p><strong>Empresa / instituição:</strong> {esc(organizacao)}</p>
+                            <p><strong>Setor:</strong> {esc(setor)}</p>
+                            <p><strong>Principal interesse:</strong> {esc(interesse)}</p>
+                            <p><strong>Desafio ou necessidade:</strong><br>{esc(mensagem)}</p>
+                            <hr style="border:none;border-top:1px solid #E4DDCF;margin:22px 0;">
+                            <p style="font-size:12px;color:#667085;">
+                              O solicitante autorizou o uso destas informações exclusivamente
+                              para contato e análise inicial da solicitação.
+                            </p>
+                          </div>
+                        </div>
+                        """
+
+                        params = {
+                            "from": from_email,
+                            "to": ["iaveritasnexum@gmail.com"],
+                            "reply_to": email,
+                            "subject": f"Nova solicitação Veritas Nexum — {esc(organizacao)}",
+                            "html": email_html,
+                        }
+
+                        resend.Emails.send(params)
+
+                        st.success(
+                            "Solicitação enviada com sucesso para a Veritas Nexum. "
+                            "Entraremos em contato pelos dados informados."
+                        )
+                except Exception as exc:
+                    st.error(
+                        "Não foi possível enviar a solicitação neste momento. "
+                        "Tente novamente ou escreva para iaveritasnexum@gmail.com."
+                    )
 
 st.divider()
 st.markdown("<div class='vx-footer'>Veritas Nexum – IA Responsável • Capacitação • Consultoria • Governança • Tecnologia com responsabilidade</div>", unsafe_allow_html=True)
