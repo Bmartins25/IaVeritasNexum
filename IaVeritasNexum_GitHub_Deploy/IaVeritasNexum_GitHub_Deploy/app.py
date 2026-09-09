@@ -485,12 +485,25 @@ label, [data-testid="stWidgetLabel"] p {color:var(--vx-text) !important;font-wei
   }
 
   .vx-mobile-menu-section {
-    margin:.72rem .15rem .28rem;
-    color:#D6B866;
-    font-size:.68rem;
-    font-weight:800;
-    letter-spacing:.11em;
-    text-transform:uppercase;
+    display:block !important;
+    position:relative !important;
+    z-index:2 !important;
+    min-height:1.15rem !important;
+    line-height:1.15rem !important;
+    padding:.58rem .15rem .28rem !important;
+    margin:0 !important;
+    overflow:visible !important;
+    color:#D6B866 !important;
+    font-size:.68rem !important;
+    font-weight:800 !important;
+    letter-spacing:.11em !important;
+    text-transform:uppercase !important;
+  }
+
+  /* Evita que os títulos das seções sejam encobertos pelos botões no mobile. */
+  .st-key-vx_mobile_menu_panel div[data-testid="stElementContainer"]:has(.vx-mobile-menu-section) {
+    min-height:2rem !important;
+    overflow:visible !important;
   }
 
   .st-key-vx_mobile_menu_panel .stButton > button {
@@ -498,6 +511,15 @@ label, [data-testid="stWidgetLabel"] p {color:var(--vx-text) !important;font-wei
     text-align:left !important;
     justify-content:flex-start !important;
     border-radius:10px !important;
+  }
+
+  /* Mantém o texto dos itens legível nas versões atuais do Streamlit. */
+  .st-key-vx_mobile_menu_panel .stButton > button,
+  .st-key-vx_mobile_menu_panel .stButton > button p,
+  .st-key-vx_mobile_menu_panel div[data-testid="stButton"] button,
+  .st-key-vx_mobile_menu_panel div[data-testid="stButton"] button p {
+    color:#FFFFFF !important;
+    -webkit-text-fill-color:#FFFFFF !important;
   }
 
   /* Conteúdo sempre permanece na mesma tela */
