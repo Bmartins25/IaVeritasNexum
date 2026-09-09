@@ -1467,11 +1467,35 @@ elif page == "Capacitação":
 
     c1, c2, c3 = st.columns(3)
     with c1:
-        st.metric("Estrutura", "10 módulos")
+        st.markdown(
+            """
+            <div style="border:1px solid rgba(214,184,102,.38); border-top:3px solid #C9A23A; border-radius:14px; padding:.85rem 1rem; min-height:92px;">
+              <div style="font-size:.78rem; margin-bottom:.25rem; opacity:.82;">Estrutura</div>
+              <div style="font-size:1.35rem; line-height:1.2; font-weight:500;">10 módulos</div>
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
     with c2:
-        st.metric("Formato", "Corporativo")
+        st.markdown(
+            """
+            <div style="border:1px solid rgba(214,184,102,.38); border-top:3px solid #C9A23A; border-radius:14px; padding:.85rem 1rem; min-height:92px;">
+              <div style="font-size:.78rem; margin-bottom:.25rem; opacity:.82;">Formato</div>
+              <div style="font-size:1.35rem; line-height:1.2; font-weight:500;">Corporativo</div>
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
     with c3:
-        st.metric("Modalidades", "Presencial · Online · Híbrida")
+        st.markdown(
+            """
+            <div style="border:1px solid rgba(214,184,102,.38); border-top:3px solid #C9A23A; border-radius:14px; padding:.85rem 1rem; min-height:92px;">
+              <div style="font-size:.78rem; margin-bottom:.25rem; opacity:.82;">Modalidades</div>
+              <div style="font-size:1.18rem; line-height:1.25; font-weight:500; white-space:normal;">Presencial · Online · Híbrida</div>
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
 
     st.subheader("Eixos da formação")
     st.markdown(
