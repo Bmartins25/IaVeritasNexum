@@ -925,7 +925,7 @@ init_db()
 # Navegação lateral baseada em botões. O clique atualiza o estado e a página
 # é renderizada imediatamente na mesma interação do Streamlit.
 MENU_GROUPS = [
-    ("Institucional", ["Início", "Sobre a Veritas", "Fundador"]),
+    ("Institucional", ["Início", "Sobre a Veritas", "Capacitação", "Fundador"]),
     ("Diagnóstico", ["Sistemas avaliados", "Nova avaliação", "Avaliar critérios"]),
     ("Entregas", ["Resultados", "Plano de ação", "Relatório"]),
     ("Relacionamento", ["Contato"]),
@@ -1448,6 +1448,101 @@ elif page == "Sobre a Veritas":
     st.markdown("### Ambiente de apoio")
     st.write("A Veritas Nexum utiliza recursos digitais próprios como apoio às atividades consultivas e educacionais, permitindo organizar diagnósticos, registrar evidências, identificar oportunidades de melhoria e acompanhar planos de evolução em IA Responsável.")
     st.caption("Os recursos de diagnóstico disponibilizados neste ambiente têm caráter orientativo e de apoio à capacitação e à consultoria.")
+
+elif page == "Capacitação":
+    st.title("Capacitação em Inteligência Artificial Responsável")
+    st.markdown(
+        """
+        <section class="vx-hero">
+          <div class="vx-hero-title">Prepare pessoas e organizações para usar IA com segurança, critério e responsabilidade.</div>
+          <div class="vx-hero-sub">
+            A Veritas Nexum oferece um programa corporativo de capacitação em Inteligência Artificial Responsável,
+            adaptável ao contexto, ao nível de maturidade e aos desafios de cada organização. A formação combina
+            fundamentos, aplicação prática e visão de governança para apoiar decisões mais seguras e conscientes.
+          </div>
+        </section>
+        """,
+        unsafe_allow_html=True,
+    )
+
+    c1, c2, c3 = st.columns(3)
+    with c1:
+        st.metric("Estrutura", "10 módulos")
+    with c2:
+        st.metric("Formato", "Corporativo")
+    with c3:
+        st.metric("Modalidades", "Presencial · Online · Híbrida")
+
+    st.subheader("Eixos da formação")
+    st.markdown(
+        """
+        <div class="vx-card">
+          <strong>Fundamentos e IA Responsável</strong> · Ética e Transparência · Dados e Privacidade ·
+          Governança e Riscos · Maturidade Organizacional · IA Generativa · Segurança · Regulação e Normas ·
+          Auditoria e Monitoramento · Implementação da Governança.
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+
+    st.subheader("Trilhas de capacitação")
+    t1, t2 = st.columns(2)
+    with t1:
+        st.markdown(
+            """
+            <div class="vx-card">
+              <div class="vx-badge">TRILHA ESSENCIAL</div>
+              <h3 style="margin-top:.75rem">Base para uso responsável de IA</h3>
+              <p>Formação introdutória para equipes que precisam compreender oportunidades, limites, riscos e responsabilidades no uso profissional de Inteligência Artificial.</p>
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
+        st.markdown(
+            """
+            <div class="vx-card">
+              <div class="vx-badge">GOVERNANÇA E COMPLIANCE</div>
+              <h3 style="margin-top:.75rem">Controles, riscos e responsabilidade</h3>
+              <p>Trilha orientada a organizações que desejam estruturar governança, gestão de riscos, conformidade, monitoramento e responsabilidades sobre o uso de IA.</p>
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
+    with t2:
+        st.markdown(
+            """
+            <div class="vx-card">
+              <div class="vx-badge">IA GENERATIVA SEGURA</div>
+              <h3 style="margin-top:.75rem">Produtividade com supervisão e segurança</h3>
+              <p>Capacitação para uso profissional de IA generativa com foco em qualidade, proteção de dados, segurança, validação humana e prevenção de uso inadequado.</p>
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
+        st.markdown(
+            """
+            <div class="vx-card">FORMAÇÃO COMPLETA</div>
+              <h3 style="margin-top:.75rem">Programa Veritas Nexum</h3>
+              <p>Jornada integrada para profissionais, lideranças e organizações que desejam avançar da compreensão dos fundamentos à implementação de práticas de governança de IA.</p>
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
+
+    st.markdown(
+        """
+        <div class="vx-empty">
+          <strong>Conteúdo adaptado à realidade da organização.</strong><br>
+          Casos, linguagem e profundidade podem ser ajustados ao setor, ao público e aos objetivos da capacitação,
+          preservando uma abordagem prática e orientada ao uso responsável da Inteligência Artificial.
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+
+    if st.button("Fale com a Veritas sobre capacitação", type="primary", use_container_width=False):
+        st.session_state.current_page = "Contato"
+        st.rerun()
 
 elif page == "Fundador":
     st.title("Fundador")
