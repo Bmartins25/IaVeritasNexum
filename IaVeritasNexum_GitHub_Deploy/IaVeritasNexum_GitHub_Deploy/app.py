@@ -1080,8 +1080,8 @@ if page == "Início":
             A adoção cresce rapidamente — e a transformação continua até 2030
           </h2>
           <p style="color:#5C6572;max-width:920px;line-height:1.7;margin-top:.65rem;">
-            Os indicadores abaixo usam dados publicados por Stanford HAI, McKinsey e World Economic Forum.
-            Eles mostram adoção organizacional observada e expectativas empresariais para 2030.
+            Os indicadores abaixo usam dados publicados por Stanford HAI, World Economic Forum e PwC.
+            Eles mostram adoção organizacional observada, expectativas empresariais e estimativas de impacto econômico.
           </p>
         </div>
         """,
@@ -1280,19 +1280,280 @@ if page == "Início":
         """
         <div style="margin-top:1.1rem;padding:1rem 1.1rem;border:1px solid #E4DDCF;
                     background:#FBF8F0;border-radius:14px;color:#5C6572;line-height:1.65;">
-          <strong style="color:#0B1D35">Fontes:</strong><br>
+          <strong style="color:#0B1D35">Fontes dos indicadores:</strong><br>
           • Stanford HAI — <a href="https://hai.stanford.edu/ai-index/2025-ai-index-report" target="_blank">
             AI Index Report 2025</a> (55% em 2023; 78% em 2024).<br>
           • Stanford HAI — <a href="https://hai.stanford.edu/ai-index/2026-ai-index-report/economy" target="_blank">
             AI Index Report 2026</a> (88% em 2025).<br>
           • World Economic Forum — <a href="https://www.weforum.org/publications/the-future-of-jobs-report-2025/" target="_blank">
             Future of Jobs Report 2025</a> (86% até 2030).<br>
-          • PwC — <a href="https://www.pwc.com/us/en/tech-effect/ai-analytics/scaling-ai-capabilities-with-generative-investment.html" target="_blank">
-            impacto econômico potencial da IA em 2030</a> (até US$ 15,7 trilhões).
+          • PwC — <a href="https://www.pwc.com/gx/en/issues/data-and-analytics/publications/artificial-intelligence-study.html" target="_blank">
+            Sizing the Prize</a> (estimativa de até US$ 15,7 trilhões em impacto econômico global até 2030).
         </div>
         """,
         unsafe_allow_html=True,
     )
+
+    # ------------------------------------------------------------------
+    # Como a Veritas atua
+    # ------------------------------------------------------------------
+    st.markdown("---")
+    st.markdown(
+        """
+        <div style="margin-top:1rem;margin-bottom:1rem;">
+          <div style="font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;
+                      font-weight:800;color:#C59A3D;margin-bottom:.55rem;">COMO A VERITAS ATUA</div>
+          <h2 style="margin:0;color:#0B1D35;font-family:Georgia,'Times New Roman',serif;">
+            Da compreensão à aplicação responsável
+          </h2>
+          <p style="color:#5C6572;max-width:920px;line-height:1.7;margin-top:.65rem;">
+            A Veritas Nexum combina capacitação, orientação e diagnóstico para ajudar profissionais e organizações
+            a transformar princípios de IA Responsável em práticas aplicáveis ao contexto real de trabalho.
+          </p>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+
+    c1, c2, c3 = st.columns(3, gap="large")
+    with c1:
+        st.markdown(
+            """
+            <div class="vx-card" style="min-height:220px;border-top:4px solid #C59A3D;">
+              <div style="font-size:1.15rem;font-weight:800;color:#0B1D35;margin-bottom:.55rem;">Capacitação</div>
+              <div style="color:#5C6572;line-height:1.7;">
+                Palestras, workshops, treinamentos e programas de letramento para ampliar compreensão,
+                senso crítico e capacidade de uso responsável da IA.
+              </div>
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
+    with c2:
+        st.markdown(
+            """
+            <div class="vx-card" style="min-height:220px;border-top:4px solid #C59A3D;">
+              <div style="font-size:1.15rem;font-weight:800;color:#0B1D35;margin-bottom:.55rem;">Orientação</div>
+              <div style="color:#5C6572;line-height:1.7;">
+                Apoio à definição de boas práticas, papéis, responsabilidades, controles e formas mais seguras
+                de incorporar IA a processos e decisões.
+              </div>
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
+    with c3:
+        st.markdown(
+            """
+            <div class="vx-card" style="min-height:220px;border-top:4px solid #C59A3D;">
+              <div style="font-size:1.15rem;font-weight:800;color:#0B1D35;margin-bottom:.55rem;">Diagnóstico</div>
+              <div style="color:#5C6572;line-height:1.7;">
+                Avaliação orientativa de maturidade, riscos, dados, transparência e governança, com registro de
+                evidências, lacunas e recomendações de evolução.
+              </div>
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
+
+    # ------------------------------------------------------------------
+    # Eixos de IA responsável
+    # ------------------------------------------------------------------
+    st.markdown("---")
+    st.markdown(
+        """
+        <div style="margin-top:1rem;margin-bottom:.7rem;">
+          <div style="font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;
+                      font-weight:800;color:#C59A3D;margin-bottom:.55rem;">IA RESPONSÁVEL NA PRÁTICA</div>
+          <h2 style="margin:0;color:#0B1D35;font-family:Georgia,'Times New Roman',serif;">
+            Cinco eixos para estruturar decisões mais responsáveis
+          </h2>
+          <p style="color:#5C6572;max-width:980px;line-height:1.7;margin-top:.65rem;">
+            Os eixos abaixo sintetizam temas recorrentes em referenciais internacionais de governança e gestão de riscos de IA.
+            Eles funcionam como pontos de atenção para análise organizacional e não substituem requisitos legais ou setoriais específicos.
+          </p>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+
+    axes = [
+        ("01", "Governança e accountability", "Papéis, responsabilidades, políticas, documentação e prestação de contas."),
+        ("02", "Dados e privacidade", "Qualidade, origem, proteção, finalidade, acesso e tratamento responsável de dados."),
+        ("03", "Riscos, robustez e segurança", "Identificação de riscos, controles, testes, segurança e capacidade de resposta a falhas."),
+        ("04", "Transparência e explicabilidade", "Informações compreensíveis sobre finalidade, limites, funcionamento e uso dos resultados."),
+        ("05", "Supervisão humana e monitoramento", "Participação humana adequada, acompanhamento contínuo, revisão e melhoria pós-implantação."),
+    ]
+    ax_cols = st.columns(5, gap="small")
+    for col, (num, title, body) in zip(ax_cols, axes):
+        with col:
+            st.markdown(
+                f"""
+                <div style="height:100%;min-height:260px;padding:18px 16px;border:1px solid #E4DDCF;
+                            background:#FFFDF8;border-radius:14px;box-shadow:0 5px 18px rgba(11,29,53,.04);">
+                  <div style="font-size:.76rem;font-weight:900;color:#C59A3D;letter-spacing:.12em;">{num}</div>
+                  <div style="font-size:1.02rem;font-weight:800;color:#0B1D35;margin:.55rem 0;line-height:1.3;">{title}</div>
+                  <div style="font-size:.9rem;color:#5C6572;line-height:1.55;">{body}</div>
+                </div>
+                """,
+                unsafe_allow_html=True,
+            )
+
+    # ------------------------------------------------------------------
+    # Jornada do diagnóstico
+    # ------------------------------------------------------------------
+    st.markdown("---")
+    st.markdown(
+        """
+        <div style="margin-top:1rem;margin-bottom:.8rem;">
+          <div style="font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;
+                      font-weight:800;color:#C59A3D;margin-bottom:.55rem;">JORNADA VERITAS</div>
+          <h2 style="margin:0;color:#0B1D35;font-family:Georgia,'Times New Roman',serif;">
+            Um fluxo claro, rastreável e orientado à evolução
+          </h2>
+          <p style="color:#5C6572;max-width:900px;line-height:1.7;margin-top:.65rem;">
+            O diagnóstico organiza informações do sistema de IA, registra critérios e evidências, consolida resultados
+            e transforma lacunas em prioridades de ação.
+          </p>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+
+    journey = [
+        ("1", "Cadastrar", "Registrar o sistema, contexto, finalidade e responsável."),
+        ("2", "Avaliar", "Responder aos critérios e registrar evidências e justificativas."),
+        ("3", "Identificar lacunas", "Consolidar score, maturidade e pontos críticos."),
+        ("4", "Priorizar", "Organizar riscos e recomendações conforme relevância."),
+        ("5", "Planejar", "Definir ações, responsáveis e prazos de adequação."),
+        ("6", "Relatar", "Gerar uma visão consolidada para comunicação e acompanhamento."),
+    ]
+    jcols = st.columns(6, gap="small")
+    for col, (n, title, body) in zip(jcols, journey):
+        with col:
+            st.markdown(
+                f"""
+                <div style="min-height:230px;padding:16px 14px;border-radius:14px;background:#0B1D35;color:#FFFFFF;">
+                  <div style="width:34px;height:34px;border-radius:50%;background:#C59A3D;color:#FFFFFF;
+                              display:flex;align-items:center;justify-content:center;font-weight:900;margin-bottom:.8rem;">{n}</div>
+                  <div style="font-size:1rem;font-weight:800;margin-bottom:.45rem;">{title}</div>
+                  <div style="font-size:.86rem;line-height:1.55;color:#E7E9ED;">{body}</div>
+                </div>
+                """,
+                unsafe_allow_html=True,
+            )
+
+    # ------------------------------------------------------------------
+    # Para quem é
+    # ------------------------------------------------------------------
+    st.markdown("---")
+    st.markdown(
+        """
+        <div style="margin-top:1rem;margin-bottom:.8rem;">
+          <div style="font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;
+                      font-weight:800;color:#C59A3D;margin-bottom:.55rem;">PARA QUEM É</div>
+          <h2 style="margin:0;color:#0B1D35;font-family:Georgia,'Times New Roman',serif;">
+            IA Responsável precisa conectar tecnologia, negócio e pessoas
+          </h2>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+
+    p1, p2, p3, p4 = st.columns(4, gap="medium")
+    audiences = [
+        (p1, "Organizações", "Empresas e instituições que já utilizam IA ou estão estruturando sua adoção."),
+        (p2, "Lideranças", "Gestores que precisam tomar decisões sobre oportunidades, riscos e responsabilidades."),
+        (p3, "Tecnologia & Dados", "Equipes que desenvolvem, integram, contratam, operam ou monitoram soluções de IA."),
+        (p4, "Risco, Jurídico & Compliance", "Profissionais responsáveis por controles, políticas, privacidade, conformidade e governança."),
+    ]
+    for col, title, body in audiences:
+        with col:
+            st.markdown(
+                f"""
+                <div class="vx-card" style="min-height:185px;">
+                  <div style="font-size:1.02rem;font-weight:800;color:#0B1D35;margin-bottom:.5rem;">{title}</div>
+                  <div style="color:#5C6572;line-height:1.6;">{body}</div>
+                </div>
+                """,
+                unsafe_allow_html=True,
+            )
+
+    # ------------------------------------------------------------------
+    # Referenciais
+    # ------------------------------------------------------------------
+    st.markdown("---")
+    st.markdown(
+        """
+        <div style="margin-top:1rem;margin-bottom:.8rem;">
+          <div style="font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;
+                      font-weight:800;color:#C59A3D;margin-bottom:.55rem;">REFERENCIAIS E FONTES</div>
+          <h2 style="margin:0;color:#0B1D35;font-family:Georgia,'Times New Roman',serif;">
+            Conteúdo orientado por referenciais reconhecidos
+          </h2>
+          <p style="color:#5C6572;max-width:980px;line-height:1.7;margin-top:.65rem;">
+            A Veritas Nexum utiliza referenciais técnicos, éticos e regulatórios como base de estudo e orientação.
+            A aplicação concreta de cada requisito deve considerar setor, jurisdição, finalidade e contexto de uso.
+          </p>
+        </div>
+        <div style="padding:1.1rem 1.2rem;border:1px solid #E4DDCF;background:#FBF8F0;
+                    border-radius:14px;color:#5C6572;line-height:1.75;">
+          <strong style="color:#0B1D35">Governança e gestão de riscos</strong><br>
+          • NIST — <a href="https://www.nist.gov/itl/ai-risk-management-framework" target="_blank">AI Risk Management Framework (AI RMF)</a>.<br>
+          • ISO — <a href="https://www.iso.org/standard/81230.html" target="_blank">ISO/IEC 42001:2023 — Artificial intelligence management system</a>.<br><br>
+
+          <strong style="color:#0B1D35">Princípios éticos e uso responsável</strong><br>
+          • OECD — <a href="https://oecd.ai/en/ai-principles" target="_blank">OECD AI Principles</a>.<br>
+          • UNESCO — <a href="https://www.unesco.org/en/artificial-intelligence/recommendation-ethics" target="_blank">Recommendation on the Ethics of Artificial Intelligence</a>.<br><br>
+
+          <strong style="color:#0B1D35">Proteção de dados e contexto regulatório</strong><br>
+          • Brasil — <a href="https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709.htm" target="_blank">Lei Geral de Proteção de Dados Pessoais — Lei nº 13.709/2018</a>.<br>
+          • União Europeia — <a href="https://eur-lex.europa.eu/eli/reg/2024/1689/oj" target="_blank">Regulation (EU) 2024/1689 — Artificial Intelligence Act</a>.
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+
+    st.info(
+        "O diagnóstico da Veritas Nexum é orientativo e de apoio à governança. "
+        "Não substitui auditoria independente, parecer jurídico, avaliação regulatória ou decisão profissional especializada."
+    )
+
+    # ------------------------------------------------------------------
+    # CTA final
+    # ------------------------------------------------------------------
+    st.markdown(
+        """
+        <div style="margin-top:2rem;padding:2rem 1.5rem;border-radius:18px;background:#0B1D35;
+                    text-align:center;border:1px solid #1E3657;">
+          <div style="font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;font-weight:800;
+                      color:#D6B866;margin-bottom:.7rem;">PRÓXIMO PASSO</div>
+          <div style="font-family:Georgia,'Times New Roman',serif;font-size:2rem;font-weight:700;
+                      color:#FFFFFF;line-height:1.2;">Sua organização está preparada para utilizar IA com responsabilidade?</div>
+          <div style="max-width:780px;margin:.9rem auto 0;color:#DDE3EA;line-height:1.7;">
+            Registre um sistema de IA, avalie práticas de governança e transforme os resultados em prioridades de evolução.
+          </div>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+
+    cta1, cta2, cta3 = st.columns([1, 1, 1])
+    with cta1:
+        if st.button("Iniciar diagnóstico", key="home_cta_diagnostico", type="primary", use_container_width=True):
+            st.session_state.current_page = "Sistemas avaliados"
+            st.query_params.clear()
+            st.rerun()
+    with cta2:
+        if st.button("Conhecer a Veritas", key="home_cta_sobre", use_container_width=True):
+            st.session_state.current_page = "Sobre a Veritas"
+            st.query_params.clear()
+            st.rerun()
+    with cta3:
+        if st.button("Falar com a Veritas", key="home_cta_contato", use_container_width=True):
+            st.session_state.current_page = "Contato"
+            st.query_params.clear()
+            st.rerun()
 
 
 elif page == "Sistemas avaliados":
