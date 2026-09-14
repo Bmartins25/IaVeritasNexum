@@ -931,8 +931,14 @@ MENU_GROUPS = [
     ("Relacionamento", ["Contato", "Política de Privacidade"]),
 ]
 
+# Suporte a URL direta para a Política de Privacidade.
+# Exemplo: https://seu-dominio/?page=privacy
+privacy_param = str(st.query_params.get("page", "")).strip().lower()
+
 if "current_page" not in st.session_state:
-    st.session_state.current_page = "Início"
+    st.session_state.current_page = "Política de Privacidade" if privacy_param == "privacy" else "Início"
+elif privacy_param == "privacy":
+    st.session_state.current_page = "Política de Privacidade"
 
 
 with st.sidebar:
@@ -959,6 +965,10 @@ with st.sidebar:
                 type="primary" if active else "secondary",
             ):
                 st.session_state.current_page = item
+                if item == "Política de Privacidade":
+                    st.query_params["page"] = "privacy"
+                else:
+                    st.query_params.clear()
 
     st.divider()
     st.caption("Consultoria em IA Responsável • Capacitação • Governança • Diagnóstico")
@@ -1005,6 +1015,10 @@ if st.session_state.show_mobile_menu:
                     type="primary" if active else "secondary",
                 ):
                     st.session_state.current_page = item
+                    if item == "Política de Privacidade":
+                        st.query_params["page"] = "privacy"
+                    else:
+                        st.query_params.clear()
                     st.session_state.show_mobile_menu = False
                     st.rerun()
 
