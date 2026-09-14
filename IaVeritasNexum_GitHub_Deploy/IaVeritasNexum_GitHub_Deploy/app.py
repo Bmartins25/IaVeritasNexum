@@ -928,7 +928,7 @@ MENU_GROUPS = [
     ("Institucional", ["Início", "Sobre a Veritas", "Capacitação", "Fundador"]),
     ("Diagnóstico", ["Sistemas avaliados", "Nova avaliação", "Avaliar critérios"]),
     ("Entregas", ["Resultados", "Plano de ação", "Relatório"]),
-    ("Relacionamento", ["Contato"]),
+    ("Relacionamento", ["Contato", "Política de Privacidade"]),
 ]
 
 if "current_page" not in st.session_state:
@@ -1581,6 +1581,45 @@ elif page == "Fundador":
     with c2:
         if FOUNDER_PHOTO.exists():
             st.image(str(FOUNDER_PHOTO), use_container_width=True, caption="Bruno Bartolomeu • Fundador")
+
+elif page == "Política de Privacidade":
+    st.title("Política de Privacidade")
+    st.caption("Veritas Nexum – IA Responsável | Última atualização: 14 de setembro de 2026")
+
+    st.markdown("### 1. Quem somos")
+    st.write("A Veritas Nexum – IA Responsável é uma iniciativa voltada à capacitação, consultoria, governança e uso responsável de Inteligência Artificial. Esta Política de Privacidade descreve como tratamos dados pessoais coletados por nossos canais digitais, formulários e integrações, inclusive serviços disponibilizados por plataformas da Meta.")
+
+    st.markdown("### 2. Dados que podem ser tratados")
+    st.write("Podemos tratar dados fornecidos diretamente pelo usuário, como nome, e-mail, telefone, empresa ou instituição, cargo, mensagens e informações inseridas em formulários. Quando houver interação por plataformas de terceiros, como Instagram ou outros serviços da Meta, poderemos receber os dados estritamente necessários disponibilizados pela plataforma para viabilizar a interação, conforme as permissões concedidas e as regras aplicáveis.")
+
+    st.markdown("### 3. Finalidades do tratamento")
+    st.write("Os dados podem ser utilizados para responder solicitações e mensagens, prestar atendimento, executar funcionalidades solicitadas pelo usuário, manter registros operacionais e de segurança, aprimorar nossos serviços e cumprir obrigações legais ou regulatórias aplicáveis.")
+
+    st.markdown("### 4. Integrações com Meta e Instagram")
+    st.write("Quando o usuário interage com recursos da Veritas Nexum integrados ao Instagram ou a outros produtos da Meta, o tratamento ocorre apenas dentro das funcionalidades autorizadas. A Veritas Nexum não utiliza essas integrações para vender dados pessoais. O uso de dados recebidos das plataformas da Meta está sujeito às permissões concedidas, às políticas da plataforma e à legislação aplicável.")
+
+    st.markdown("### 5. Compartilhamento de dados")
+    st.write("Os dados não são comercializados. Poderão ser compartilhados com provedores de infraestrutura, hospedagem, comunicação e tecnologia somente quando necessário para a operação dos serviços, observadas medidas razoáveis de segurança e as obrigações legais aplicáveis. Também poderá haver compartilhamento quando exigido por lei ou por autoridade competente.")
+
+    st.markdown("### 6. Armazenamento e segurança")
+    st.write("Adotamos medidas técnicas e organizacionais razoáveis para proteger os dados contra acesso não autorizado, perda, alteração, divulgação ou tratamento inadequado. Os dados são mantidos pelo período necessário às finalidades informadas e ao cumprimento de obrigações legais, contratuais ou regulatórias.")
+
+    st.markdown("### 7. Direitos do titular")
+    st.write("Nos termos da Lei Geral de Proteção de Dados Pessoais (LGPD), o titular pode solicitar, quando aplicável, confirmação da existência de tratamento, acesso, correção, anonimização, bloqueio ou eliminação, informação sobre compartilhamento, portabilidade e revogação do consentimento, observadas as hipóteses e limitações legais.")
+
+    st.markdown("### 8. Exclusão de dados")
+    st.write("Para solicitar acesso, correção ou exclusão de dados pessoais relacionados aos serviços da Veritas Nexum, envie uma solicitação para iaveritasnexum@gmail.com, identificando o canal utilizado e o pedido. A solicitação será analisada e atendida conforme a legislação aplicável e as obrigações de retenção existentes.")
+
+    st.markdown("### 9. Serviços de terceiros")
+    st.write("Nossos serviços podem utilizar plataformas de terceiros, incluindo serviços da Meta, hospedagem e provedores de comunicação. Esses terceiros possuem políticas próprias de privacidade e segurança, e o tratamento realizado diretamente por eles está sujeito aos respectivos termos e políticas.")
+
+    st.markdown("### 10. Atualizações desta política")
+    st.write("Esta Política de Privacidade poderá ser atualizada para refletir alterações nos serviços, requisitos legais, regulatórios ou tecnológicos. A versão vigente permanecerá publicada neste ambiente.")
+
+    st.markdown("### 11. Contato")
+    st.write("Para dúvidas ou solicitações relacionadas à privacidade e ao tratamento de dados pessoais, entre em contato pelo e-mail iaveritasnexum@gmail.com.")
+
+    st.info("Veritas Nexum – IA Responsável • Belo Horizonte – MG • Atendimento nacional e internacional")
 
 elif page == "Contato":
     st.title("Contato")
