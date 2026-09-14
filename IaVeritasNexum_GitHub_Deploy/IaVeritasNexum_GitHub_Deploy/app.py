@@ -1538,22 +1538,6 @@ if page == "Início":
         unsafe_allow_html=True,
     )
 
-    cta1, cta2, cta3 = st.columns([1, 1, 1])
-    with cta1:
-        if st.button("Iniciar diagnóstico", key="home_cta_diagnostico", type="primary", use_container_width=True):
-            st.session_state.current_page = "Sistemas avaliados"
-            st.query_params.clear()
-            st.rerun()
-    with cta2:
-        if st.button("Conhecer a Veritas", key="home_cta_sobre", use_container_width=True):
-            st.session_state.current_page = "Sobre a Veritas"
-            st.query_params.clear()
-            st.rerun()
-    with cta3:
-        if st.button("Falar com a Veritas", key="home_cta_contato", use_container_width=True):
-            st.session_state.current_page = "Contato"
-            st.query_params.clear()
-            st.rerun()
 
 
 elif page == "Sistemas avaliados":
@@ -1852,7 +1836,10 @@ elif page == "Fundador":
         st.write("Profissional com 10 anos de experiência em Tecnologia, com atuação em Ciência e Análise de Dados, Machine Learning, Analytics e Inteligência Artificial, nos setores financeiro, seguros, indústria e saúde.")
         st.write("Mestrando em Inovação Tecnológica pela UFMG, professor universitário e pesquisador em IA Responsável, com foco em governança, riscos, transparência e conformidade.")
         st.write("Fundador da Veritas Nexum – IA Responsável, iniciativa dedicada à capacitação e orientação de profissionais e organizações para o uso consciente, seguro e responsável da Inteligência Artificial.")
+        st.markdown("### Perfis acadêmicos e profissionais")
         st.markdown("[LinkedIn de Bruno Bartolomeu](https://www.linkedin.com/in/bruno-bartolomeu-39628a163/)")
+        st.markdown("[Currículo Lattes](http://lattes.cnpq.br/4479037178271028)")
+        st.markdown("[ORCID — 0009-0001-9542-3086](https://orcid.org/0009-0001-9542-3086)")
     with c2:
         if FOUNDER_PHOTO.exists():
             st.image(str(FOUNDER_PHOTO), use_container_width=True, caption="Bruno Bartolomeu • Fundador")
