@@ -373,8 +373,23 @@ label, [data-testid="stWidgetLabel"] p {color:var(--vx-text) !important;font-wei
   width:112px;height:112px;border-radius:50%;
   display:flex;align-items:center;justify-content:center;
   background:#fff;border:2px solid var(--vx-gold);
-  font-size:2.25rem;font-weight:850;color:var(--vx-navy);
+  font-size:2rem;font-weight:850;color:var(--vx-navy);
   box-shadow:0 12px 35px rgba(197,154,61,.18);z-index:3;
+  flex-direction:column;line-height:1;
+}
+.vx-ai-core small {
+  margin-top:.38rem;font-size:.56rem;letter-spacing:.08em;text-transform:uppercase;
+  color:#8A6A28;font-weight:800;
+}
+.vx-ai-scene-kicker {
+  position:absolute;left:50%;top:6%;transform:translateX(-50%);
+  font-size:.62rem;letter-spacing:.16em;font-weight:850;color:#9A7A35;z-index:4;
+}
+.vx-ai-links {
+  position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-events:none;
+}
+.vx-ai-links line {
+  stroke:rgba(197,154,61,.52);stroke-width:.32;stroke-dasharray:1.4 1.4;vector-effect:non-scaling-stroke;
 }
 .vx-ai-orbit {
   position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
@@ -386,11 +401,7 @@ label, [data-testid="stWidgetLabel"] p {color:var(--vx-text) !important;font-wei
   box-shadow:0 8px 22px rgba(11,29,53,.07);z-index:2;
 }
 .vx-n1{left:7%;top:15%}.vx-n2{right:7%;top:16%}.vx-n3{left:5%;bottom:17%}.vx-n4{right:5%;bottom:17%}.vx-n5{left:50%;bottom:5%;transform:translateX(-50%)}
-.vx-ai-line {
-  position:absolute;height:1px;
-  background:linear-gradient(90deg,transparent,var(--vx-gold),transparent);
-  width:75%;left:12%;top:50%;opacity:.65;
-}
+.vx-ai-line {display:none;}
 
 /* Menu mobile: painel controlado por session_state */
 .st-key-vx_mobile_menu_toggle,
@@ -1053,10 +1064,17 @@ if page == "Início":
             <p>A questão deixou de ser apenas <strong>“como usar IA?”</strong>. Profissionais e organizações precisam saber <strong>quando usar, por que usar e como usar com responsabilidade</strong>.</p>
             <p class="vx-reality-note">É nesse espaço entre inovação e responsabilidade que a Veritas Nexum atua.</p>
           </div>
-          <div class="vx-ai-scene" role="img" aria-label="Ilustração da Inteligência Artificial conectando aplicações do mundo real">
-            <div class="vx-ai-line"></div>
+          <div class="vx-ai-scene" role="img" aria-label="Inteligência Artificial conectando aplicações do mundo real">
+            <div class="vx-ai-scene-kicker">VERITAS NEXUM</div>
             <div class="vx-ai-orbit"></div>
-            <div class="vx-ai-core">IA</div>
+            <svg class="vx-ai-links" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+              <line x1="50" y1="50" x2="20" y2="24" />
+              <line x1="50" y1="50" x2="80" y2="24" />
+              <line x1="50" y1="50" x2="18" y2="76" />
+              <line x1="50" y1="50" x2="82" y2="76" />
+              <line x1="50" y1="50" x2="50" y2="88" />
+            </svg>
+            <div class="vx-ai-core"><span>IA</span><small>responsável</small></div>
             <div class="vx-ai-node vx-n1">Saúde</div>
             <div class="vx-ai-node vx-n2">Finanças</div>
             <div class="vx-ai-node vx-n3">Educação</div>
