@@ -400,7 +400,7 @@ label, [data-testid="stWidgetLabel"] p {color:var(--vx-text) !important;font-wei
   padding:.65rem .8rem;font-size:.8rem;font-weight:750;color:var(--vx-navy);
   box-shadow:0 8px 22px rgba(11,29,53,.07);z-index:2;
 }
-.vx-n1{left:7%;top:15%}.vx-n2{right:7%;top:16%}.vx-n3{left:5%;bottom:17%}.vx-n4{right:5%;bottom:17%}.vx-n5{left:50%;bottom:5%;transform:translateX(-50%)}
+.vx-n1{left:9%;top:16%}.vx-n2{right:9%;top:16%}.vx-n3{left:7%;bottom:17%}.vx-n4{right:7%;bottom:17%}.vx-n5{left:50%;bottom:5%;transform:translateX(-50%)}
 .vx-ai-line {display:none;}
 
 /* Menu mobile: painel controlado por session_state */
@@ -1067,13 +1067,6 @@ if page == "Início":
           <div class="vx-ai-scene" role="img" aria-label="Inteligência Artificial conectando aplicações do mundo real">
             <div class="vx-ai-scene-kicker">VERITAS NEXUM</div>
             <div class="vx-ai-orbit"></div>
-            <svg class="vx-ai-links" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
-              <line x1="50" y1="50" x2="20" y2="24" />
-              <line x1="50" y1="50" x2="80" y2="24" />
-              <line x1="50" y1="50" x2="18" y2="76" />
-              <line x1="50" y1="50" x2="82" y2="76" />
-              <line x1="50" y1="50" x2="50" y2="88" />
-            </svg>
             <div class="vx-ai-core"><span>IA</span><small>responsável</small></div>
             <div class="vx-ai-node vx-n1">Saúde</div>
             <div class="vx-ai-node vx-n2">Finanças</div>
