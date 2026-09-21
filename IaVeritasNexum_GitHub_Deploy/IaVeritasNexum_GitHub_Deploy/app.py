@@ -51,7 +51,10 @@ html, body, [class*="css"] {
 }
 .block-container {padding-top:1.05rem;padding-bottom:3.2rem;max-width:1320px;}
 header[data-testid="stHeader"] {background:#FBFAF7 !important;height:2.4rem;}
-[data-testid="stToolbar"] {right:1rem;}
+[data-testid="stToolbar"] {display:none !important;}
+#MainMenu {visibility:hidden !important;}
+footer {visibility:hidden !important;}
+[data-testid="stAppDeployButton"] {display:none !important;}
 
 /* Sidebar institucional: azul-marinho + dourado */
 [data-testid="stSidebar"] {
