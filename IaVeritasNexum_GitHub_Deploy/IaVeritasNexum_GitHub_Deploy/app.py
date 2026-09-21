@@ -1,5 +1,6 @@
 import json
 import sqlite3
+import re
 from datetime import datetime
 from pathlib import Path
 
@@ -642,6 +643,31 @@ li[aria-selected="true"][role="option"] {
   color:var(--vx-text) !important;
 }
 
+
+/* Veritas Nexum — padronização global de textos de destaque em dourado */
+.stApp a,
+.stApp a:visited,
+.stApp [data-testid="stMarkdownContainer"] a,
+.stApp [data-testid="stCaptionContainer"] a {
+    color: var(--vx-gold) !important;
+    -webkit-text-fill-color: var(--vx-gold) !important;
+}
+
+/* Alertas informativos (st.info): substitui o azul padrão do Streamlit pelo dourado institucional */
+div[data-testid="stAlert"]:has([data-testid="stAlertContentInfo"]),
+div[data-baseweb="notification"][kind="info"] {
+    color: var(--vx-gold) !important;
+}
+div[data-testid="stAlert"]:has([data-testid="stAlertContentInfo"]) p,
+div[data-testid="stAlert"]:has([data-testid="stAlertContentInfo"]) span,
+div[data-testid="stAlert"]:has([data-testid="stAlertContentInfo"]) svg,
+div[data-baseweb="notification"][kind="info"] p,
+div[data-baseweb="notification"][kind="info"] span,
+div[data-baseweb="notification"][kind="info"] svg {
+    color: var(--vx-gold) !important;
+    fill: var(--vx-gold) !important;
+    -webkit-text-fill-color: var(--vx-gold) !important;
+}
 
 /* Veritas Nexum — feedback de formulários */
 div[data-testid="stAlert"] {
@@ -1718,7 +1744,7 @@ elif page == "Sobre a Veritas":
     st.write("A Veritas Nexum aproxima profissionais e organizações dos princípios de IA Responsável por meio de conhecimento aplicado, capacitação e orientação. O objetivo é apoiar decisões mais conscientes sobre como adotar, utilizar e governar Inteligência Artificial no trabalho.")
     st.markdown("### Como trabalhamos")
     st.markdown(
-        """<div style="background:#DCEEFF; border-radius:12px; padding:14px 16px; color:#D5BC7C; font-weight:700;">Compreender o contexto → Capacitar pessoas → Identificar riscos → Organizar boas práticas → Definir ações → Acompanhar a evolução</div>""",
+        """<div style="background:#DCEEFF; border-radius:12px; padding:14px 16px; color:#C59A3D; font-weight:700;">Compreender o contexto → Capacitar pessoas → Identificar riscos → Organizar boas práticas → Definir ações → Acompanhar a evolução</div>""",
         unsafe_allow_html=True,
     )
     st.markdown("### Ambiente de apoio")
@@ -1931,8 +1957,10 @@ elif page == "Contato":
         if sent:
             if not nome or not email or not organizacao or interesse == "Selecione" or not consent:
                 st.error("Preencha os campos obrigatórios e marque a autorização.")
-            elif "@" not in email or "." not in email.split("@")[-1]:
-                st.error("Informe um e-mail profissional válido.")
+            elif not re.fullmatch(r"[A-Za-z0-9.!#$%&'*+/=?^_`{|}~-]+@[A-Za-z0-9](?:[A-Za-z0-9-]{0,61}[A-Za-z0-9])?(?:\.[A-Za-z0-9](?:[A-Za-z0-9-]{0,61}[A-Za-z0-9])?)+", email.strip()):
+                st.error("Informe um e-mail profissional válido, por exemplo: nome@empresa.com.br.")
+            elif telefone and not re.fullmatch(r"(?:\+?55\s*)?(?:\(?\d{2}\)?[\s.-]*)?(?:9\d{4}|\d{4})[\s.-]*\d{4}", telefone.strip()):
+                st.error("Informe um telefone/WhatsApp válido com DDD, por exemplo: (31) 99999-9999.")
             else:
                 try:
                     api_key = st.secrets.get("RESEND_API_KEY", "")
