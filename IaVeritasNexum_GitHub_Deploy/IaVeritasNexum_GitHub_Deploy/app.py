@@ -1717,7 +1717,10 @@ elif page == "Sobre a Veritas":
     st.markdown("### Nossa proposta")
     st.write("A Veritas Nexum aproxima profissionais e organizações dos princípios de IA Responsável por meio de conhecimento aplicado, capacitação e orientação. O objetivo é apoiar decisões mais conscientes sobre como adotar, utilizar e governar Inteligência Artificial no trabalho.")
     st.markdown("### Como trabalhamos")
-    st.info("Compreender o contexto → Capacitar pessoas → Identificar riscos → Organizar boas práticas → Definir ações → Acompanhar a evolução")
+    st.markdown(
+        """<div style="background:#DCEEFF; border-radius:12px; padding:14px 16px; color:#D5BC7C; font-weight:700;">Compreender o contexto → Capacitar pessoas → Identificar riscos → Organizar boas práticas → Definir ações → Acompanhar a evolução</div>""",
+        unsafe_allow_html=True,
+    )
     st.markdown("### Ambiente de apoio")
     st.write("A Veritas Nexum utiliza recursos digitais próprios como apoio às atividades consultivas e educacionais, permitindo organizar diagnósticos, registrar evidências, identificar oportunidades de melhoria e acompanhar planos de evolução em IA Responsável.")
     st.caption("Os recursos de diagnóstico disponibilizados neste ambiente têm caráter orientativo e de apoio à capacitação e à consultoria.")
