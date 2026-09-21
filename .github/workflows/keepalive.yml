@@ -12,10 +12,14 @@ jobs:
     steps:
       - name: Access Veritas Nexum
         run: |
-          curl --silent --show-error \
-               --max-time 60 \
-               -A "Mozilla/5.0" \
-               "${{ secrets.VERITAS_URL }}" \
-               -o /dev/null
+          echo "Testing Veritas Nexum..."
 
-          echo "Veritas Nexum accessed successfully."
+          curl -L \
+            --max-time 60 \
+            -A "Mozilla/5.0" \
+            -o /dev/null \
+            -sS \
+            -w "HTTP_STATUS=%{http_code}\nFINAL_URL=%{url_effective}\n" \
+            "${{ secrets.VERITAS_URL }}"
+
+          echo "Veritas Nexum test completed."
