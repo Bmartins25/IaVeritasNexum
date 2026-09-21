@@ -656,7 +656,9 @@ li[aria-selected="true"][role="option"] {
 /* Alertas informativos (st.info): substitui o azul padrão do Streamlit pelo dourado institucional */
 div[data-testid="stAlert"]:has([data-testid="stAlertContentInfo"]),
 div[data-baseweb="notification"][kind="info"] {
-    color: var(--vx-gold) !important;
+    background: #F7F2E8 !important;
+    border-color: #E2D4B8 !important;
+    color: #B98518 !important;
 }
 div[data-testid="stAlert"]:has([data-testid="stAlertContentInfo"]) p,
 div[data-testid="stAlert"]:has([data-testid="stAlertContentInfo"]) span,
@@ -664,9 +666,9 @@ div[data-testid="stAlert"]:has([data-testid="stAlertContentInfo"]) svg,
 div[data-baseweb="notification"][kind="info"] p,
 div[data-baseweb="notification"][kind="info"] span,
 div[data-baseweb="notification"][kind="info"] svg {
-    color: var(--vx-gold) !important;
-    fill: var(--vx-gold) !important;
-    -webkit-text-fill-color: var(--vx-gold) !important;
+    color: #B98518 !important;
+    fill: #B98518 !important;
+    -webkit-text-fill-color: #B98518 !important;
 }
 
 /* Veritas Nexum — feedback de formulários */
@@ -1788,7 +1790,7 @@ elif page == "Sobre a Veritas":
     st.write("A Veritas Nexum aproxima profissionais e organizações dos princípios de IA Responsável por meio de conhecimento aplicado, capacitação e orientação. O objetivo é apoiar decisões mais conscientes sobre como adotar, utilizar e governar Inteligência Artificial no trabalho.")
     st.markdown("### Como trabalhamos")
     st.markdown(
-        """<div style="background:#DCEEFF; border-radius:12px; padding:14px 16px; color:#C59A3D; font-weight:700;">Compreender o contexto → Capacitar pessoas → Identificar riscos → Organizar boas práticas → Definir ações → Acompanhar a evolução</div>""",
+        """<div style="background:#F7F2E8; border:1px solid #E2D4B8; border-radius:12px; padding:14px 16px; color:#B98518; font-weight:700;">Compreender o contexto → Capacitar pessoas → Identificar riscos → Organizar boas práticas → Definir ações → Acompanhar a evolução</div>""",
         unsafe_allow_html=True,
     )
     st.markdown("### Ambiente de apoio")
