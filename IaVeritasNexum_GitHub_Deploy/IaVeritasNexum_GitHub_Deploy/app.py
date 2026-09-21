@@ -104,7 +104,23 @@ h2,h3 {font-weight:750;}
   border-radius:12px;
   background:#FFFFFF;
 }
-[data-testid="stAlert"] {border-radius:12px;}
+[data-testid="stAlert"] {
+  border-radius:12px;
+  background:#F7F2E8 !important;
+  border:1px solid #E2D4B8 !important;
+  color:#B98518 !important;
+}
+[data-testid="stAlert"] * {color:#B98518 !important;}
+[data-testid="stAlert"] svg {fill:#B98518 !important;color:#B98518 !important;}
+
+/* Remove o azul padrão dos componentes Streamlit e mantém a identidade Veritas */
+a, a:visited {color:#B98518 !important;}
+a:hover {color:#8A6A28 !important;}
+[data-testid="stMarkdownContainer"] a {color:#B98518 !important;}
+[data-testid="stProgressBar"] > div > div,
+[role="progressbar"] > div {background-color:#C59A3D !important;}
+input[type="checkbox"], input[type="radio"] {accent-color:#C59A3D !important;}
+
 [data-testid="stDataFrame"] {
   border:1px solid var(--vx-border);
   border-radius:12px;
