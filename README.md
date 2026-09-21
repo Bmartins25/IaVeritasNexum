@@ -98,7 +98,7 @@ A versão demonstrativa está disponível em:
 
 **Bruno Bartolomeu**
 
-Mestre pela Universidade Federal de Minas Gerais (UFMG), com atuação em Inteligência Artificial Responsável, Ciência de Dados, Governança de IA e Transformação Digital.
+Mestrando pela Universidade Federal de Minas Gerais (UFMG), com atuação em Inteligência Artificial Responsável, Ciência de Dados, Governança de IA e Transformação Digital.
 
 Fundador da **Veritas Nexum**.
 
