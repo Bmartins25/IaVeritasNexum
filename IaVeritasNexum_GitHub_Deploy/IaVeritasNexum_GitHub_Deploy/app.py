@@ -879,6 +879,24 @@ def create_system(name, organization, area, purpose, audience, model_version, ow
         return cur.lastrowid
 
 
+def delete_system(system_id):
+    """Exclui um sistema e, se existirem, suas avaliações e respostas associadas."""
+    with conn() as c:
+        assessment_ids = [
+            r[0] for r in c.execute(
+                "SELECT id FROM assessments WHERE system_id=?", (system_id,)
+            ).fetchall()
+        ]
+        if assessment_ids:
+            placeholders = ",".join("?" for _ in assessment_ids)
+            c.execute(
+                f"DELETE FROM answers WHERE assessment_id IN ({placeholders})",
+                assessment_ids,
+            )
+        c.execute("DELETE FROM assessments WHERE system_id=?", (system_id,))
+        c.execute("DELETE FROM systems WHERE id=?", (system_id,))
+
+
 def create_assessment(sid, title, evaluator, objective):
     now = datetime.now().isoformat(timespec="seconds")
     with conn() as c:
@@ -1608,6 +1626,32 @@ elif page == "Sistemas avaliados":
     else:
         st.markdown("### Sistemas cadastrados")
         st.dataframe(sdf[["id", "name", "organization", "area", "purpose", "audience", "model_version", "owner"]], use_container_width=True, hide_index=True)
+
+        st.markdown("#### Excluir sistema")
+        system_labels = {
+            int(r.id): f"{r['name']} — ID {int(r.id)}"
+            for _, r in sdf.iterrows()
+        }
+        system_to_delete = st.selectbox(
+            "Selecione o sistema que deseja excluir",
+            list(system_labels.keys()),
+            format_func=lambda x: system_labels[x],
+            key="system_to_delete",
+        )
+        confirm_delete = st.checkbox(
+            "Confirmo que desejo excluir este sistema e os dados de avaliação associados.",
+            key="confirm_delete_system",
+        )
+        if st.button(
+            "🗑️ Excluir sistema",
+            type="secondary",
+            disabled=not confirm_delete,
+            key="delete_system_button",
+        ):
+            deleted_label = system_labels[system_to_delete]
+            delete_system(system_to_delete)
+            st.success(f"Sistema {deleted_label} excluído com sucesso.")
+            st.rerun()
 
 elif page == "Nova avaliação":
     st.title("Nova avaliação Veritas")
