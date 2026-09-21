@@ -1590,9 +1590,13 @@ if page == "Início":
         unsafe_allow_html=True,
     )
 
-    st.info(
-        "O diagnóstico da Veritas Nexum é orientativo e de apoio à governança. "
-        "Não substitui auditoria independente, parecer jurídico, avaliação regulatória ou decisão profissional especializada."
+    st.markdown(
+        """
+        <div style="background:#F7F2E8;border:1px solid #E2D4B8;border-radius:12px;padding:16px 18px;color:#B98518;font-weight:700;line-height:1.55;margin:.15rem 0 1rem 0;">
+          O diagnóstico da Veritas Nexum é orientativo e de apoio à governança. Não substitui auditoria independente, parecer jurídico, avaliação regulatória ou decisão profissional especializada.
+        </div>
+        """,
+        unsafe_allow_html=True,
     )
 
     # ------------------------------------------------------------------
@@ -1986,7 +1990,10 @@ elif page == "Política de Privacidade":
     st.markdown("### 11. Contato")
     st.write("Para dúvidas ou solicitações relacionadas à privacidade e ao tratamento de dados pessoais, entre em contato pelo e-mail iaveritasnexum@gmail.com.")
 
-    st.info("Veritas Nexum – IA Responsável • Belo Horizonte – MG • Atendimento nacional e internacional")
+    st.markdown(
+        '<div style="background:#F7F2E8;border:1px solid #E2D4B8;border-radius:12px;padding:14px 16px;color:#B98518;font-weight:700;line-height:1.5;">Veritas Nexum – IA Responsável • Belo Horizonte – MG • Atendimento nacional e internacional</div>',
+        unsafe_allow_html=True,
+    )
 
 elif page == "Contato":
     st.title("Contato")
@@ -2001,7 +2008,10 @@ elif page == "Contato":
     with c2:
         st.markdown("**Principais frentes**")
         st.write("• Capacitação e letramento em IA\n\n• Palestras e workshops\n\n• Boas práticas de IA Responsável\n\n• Diagnóstico orientativo\n\n• Governança e gestão de riscos\n\n• Apoio à estruturação de políticas e práticas internas")
-        st.info("Mensagem sugerida: ‘Olá, Bruno. Gostaria de conversar sobre capacitação e boas práticas para o uso responsável de IA na minha organização.’")
+        st.markdown(
+            '<div style="background:#F7F2E8;border:1px solid #E2D4B8;border-radius:12px;padding:16px 18px;color:#B98518;font-weight:700;line-height:1.55;">Mensagem sugerida: ‘Olá, Bruno. Gostaria de conversar sobre capacitação e boas práticas para o uso responsável de IA na minha organização.’</div>',
+            unsafe_allow_html=True,
+        )
 
     st.divider()
     st.markdown("### Solicitação de diagnóstico")
