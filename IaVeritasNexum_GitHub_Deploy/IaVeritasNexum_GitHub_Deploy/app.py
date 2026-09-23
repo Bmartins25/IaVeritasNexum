@@ -778,6 +778,89 @@ div[data-testid="stAlert"][data-baseweb="notification"] {
 @media(max-width:900px){.vx-proofstrip{grid-template-columns:1fr 1fr}.vx-servicegrid{grid-template-columns:1fr}.vx-topbrand-tag{display:none}.vx-home{border-radius:22px}.vx-home:after{display:none}}
 @media(max-width:560px){.vx-proofstrip{grid-template-columns:1fr}.vx-topbrand{padding:.65rem .8rem}.vx-home{padding:2rem 1.2rem}.vx-home-values{gap:.45rem}.vx-home-values span{font-size:.8rem}}
 
+
+/* ===== Veritas Nexum — campos de formulário claros ===== */
+div[data-baseweb="select"] > div,
+div[data-baseweb="base-input"],
+div[data-baseweb="input"] > div,
+div[data-testid="stTextInput"] input,
+div[data-testid="stNumberInput"] input,
+div[data-testid="stTextArea"] textarea {
+    background: #FFFDF9 !important;
+    color: #0B1D35 !important;
+    border-color: #D8C9AA !important;
+}
+
+div[data-baseweb="select"] *,
+div[data-baseweb="base-input"] *,
+div[data-baseweb="input"] *,
+div[data-testid="stTextInput"] input,
+div[data-testid="stNumberInput"] input,
+div[data-testid="stTextArea"] textarea {
+    color: #0B1D35 !important;
+    -webkit-text-fill-color: #0B1D35 !important;
+}
+
+div[data-baseweb="select"] svg {
+    fill: #0B1D35 !important;
+    color: #0B1D35 !important;
+}
+
+/* dropdown aberto */
+ul[data-testid="stSelectboxVirtualDropdown"],
+div[role="listbox"],
+div[data-baseweb="popover"] {
+    background: #FFFFFF !important;
+    color: #0B1D35 !important;
+}
+
+li[role="option"],
+div[role="option"] {
+    background: #FFFFFF !important;
+    color: #0B1D35 !important;
+}
+
+li[role="option"]:hover,
+div[role="option"]:hover {
+    background: #F6F1E7 !important;
+    color: #0B1D35 !important;
+}
+
+/* foco discreto em dourado */
+div[data-baseweb="select"] > div:focus-within,
+div[data-baseweb="base-input"]:focus-within,
+div[data-testid="stTextArea"] textarea:focus,
+div[data-testid="stTextInput"] input:focus {
+    border-color: #C59A3D !important;
+    box-shadow: 0 0 0 1px rgba(197,154,61,.20) !important;
+}
+
+
+/* ===== Veritas Nexum — fundo branco global ===== */
+html, body, [data-testid="stAppViewContainer"], .stApp,
+[data-testid="stMain"], .main, .block-container {
+    background: #FFFFFF !important;
+}
+
+/* superfícies que ainda utilizavam creme/off-white */
+.vx-home,
+.vx-topbrand,
+.vx-proofitem,
+.vx-service,
+div[data-baseweb="select"] > div,
+div[data-baseweb="base-input"],
+div[data-baseweb="input"] > div,
+div[data-testid="stTextInput"] input,
+div[data-testid="stNumberInput"] input,
+div[data-testid="stTextArea"] textarea {
+    background: #FFFFFF !important;
+}
+
+/* mantém apenas contraste sutil, sem preenchimento creme */
+.vx-proofstrip {
+    background: #E8E0D2 !important;
+}
+
 </style>
 """,
     unsafe_allow_html=True,
