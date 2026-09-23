@@ -2213,6 +2213,65 @@ elif page == "Política de Privacidade":
     )
 
 elif page == "Contato":
+    st.markdown("""
+    <style>
+    /* Força todas as camadas internas do selectbox para branco */
+    .stSelectbox div[data-baseweb="select"],
+    .stSelectbox div[data-baseweb="select"] > div,
+    .stSelectbox div[data-baseweb="select"] > div > div,
+    .stSelectbox div[data-baseweb="select"] div[role="combobox"],
+    div[data-testid="stSelectbox"] div[data-baseweb="select"],
+    div[data-testid="stSelectbox"] div[data-baseweb="select"] > div,
+    div[data-testid="stSelectbox"] div[data-baseweb="select"] > div > div,
+    div[data-testid="stSelectbox"] div[role="combobox"] {
+        background:#FFFFFF !important;
+        background-color:#FFFFFF !important;
+        background-image:none !important;
+        color:#0B1D35 !important;
+        -webkit-text-fill-color:#0B1D35 !important;
+    }
+
+    .stSelectbox div[data-baseweb="select"] div:not([role="option"]),
+    div[data-testid="stSelectbox"] div[data-baseweb="select"] div:not([role="option"]) {
+        background:#FFFFFF !important;
+        background-color:#FFFFFF !important;
+        color:#0B1D35 !important;
+        -webkit-text-fill-color:#0B1D35 !important;
+    }
+
+    .stSelectbox div[data-baseweb="select"] span,
+    .stSelectbox div[data-baseweb="select"] input,
+    .stSelectbox div[data-baseweb="select"] svg,
+    div[data-testid="stSelectbox"] div[data-baseweb="select"] span,
+    div[data-testid="stSelectbox"] div[data-baseweb="select"] input,
+    div[data-testid="stSelectbox"] div[data-baseweb="select"] svg {
+        color:#0B1D35 !important;
+        fill:#0B1D35 !important;
+        -webkit-text-fill-color:#0B1D35 !important;
+    }
+
+    .stSelectbox div[data-baseweb="select"] > div,
+    div[data-testid="stSelectbox"] div[data-baseweb="select"] > div {
+        border:1px solid #C59A3D !important;
+        box-shadow:none !important;
+    }
+
+    div[data-baseweb="popover"],
+    div[data-baseweb="popover"] *,
+    div[role="listbox"],
+    div[role="listbox"] * {
+        background:#FFFFFF !important;
+        background-color:#FFFFFF !important;
+        color:#0B1D35 !important;
+        -webkit-text-fill-color:#0B1D35 !important;
+    }
+    div[role="option"]:hover,
+    div[role="option"][aria-selected="true"] {
+        background:#F5F5F5 !important;
+        background-color:#F5F5F5 !important;
+    }
+    </style>
+    """, unsafe_allow_html=True)
     st.title("Contato")
     st.markdown("### Fale com a Veritas")
     st.write("Solicite uma conversa sobre capacitação, palestra, workshop, diagnóstico orientativo ou estruturação de práticas de IA Responsável.")
