@@ -537,6 +537,11 @@ label, [data-testid="stWidgetLabel"] p {color:var(--vx-text) !important;font-wei
     overflow:visible !important;
   }
 
+  /* Respiro visual entre as opções do menu mobile */
+  .st-key-vx_mobile_menu_panel .stButton {
+    margin-bottom:.42rem !important;
+  }
+
   .st-key-vx_mobile_menu_panel .stButton > button {
     min-height:2.75rem !important;
     text-align:left !important;
