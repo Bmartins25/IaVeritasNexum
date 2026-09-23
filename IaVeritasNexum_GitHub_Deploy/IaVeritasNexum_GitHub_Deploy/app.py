@@ -50,8 +50,8 @@ html, body, [class*="css"] {
     linear-gradient(180deg,#FBFAF7 0%,#FFFFFF 48%);
   color:var(--vx-text);
 }
-.block-container {padding-top:1.05rem;padding-bottom:3.2rem;max-width:1320px;}
-header[data-testid="stHeader"] {background:#FBFAF7 !important;height:2.4rem;}
+.block-container {padding-top:2.35rem !important;padding-bottom:3.2rem;max-width:1320px;}
+header[data-testid="stHeader"] {background:#FBFAF7 !important;height:3.15rem !important;}
 [data-testid="stToolbar"] {display:none !important;}
 #MainMenu {visibility:hidden !important;}
 footer {visibility:hidden !important;}
@@ -765,7 +765,7 @@ div[data-testid="stAlert"][data-baseweb="notification"] {
 
 
 /* ===== Veritas Nexum 2026 — refinamento institucional original ===== */
-.vx-topbrand{display:flex;align-items:center;justify-content:space-between;gap:1.5rem;padding:1rem 1.25rem;margin:.65rem 0 1.25rem;min-height:68px;box-sizing:border-box;border:1px solid var(--vx-border);border-radius:16px;background:rgba(255,255,255,.88);backdrop-filter:blur(12px);box-shadow:0 8px 26px rgba(11,29,53,.05);overflow:visible}
+.vx-topbrand{display:flex;align-items:center;justify-content:space-between;gap:1.5rem;padding:1.15rem 1.25rem;margin:1rem 0 1.25rem;min-height:72px;box-sizing:border-box;border:1px solid var(--vx-border);border-radius:16px;background:rgba(255,255,255,.88);backdrop-filter:blur(12px);box-shadow:0 8px 26px rgba(11,29,53,.05);overflow:visible}
 .vx-topbrand-name{font-family:Georgia,"Times New Roman",serif;font-size:1.05rem;font-weight:800;color:var(--vx-navy);letter-spacing:.02em}.vx-topbrand-tag{font-size:.78rem;color:#776B55;letter-spacing:.08em;text-transform:uppercase;font-weight:700}
 .vx-home{border:1px solid #E8E0D2;border-radius:30px;padding:clamp(2.3rem,5vw,5.4rem);min-height:70vh;background:linear-gradient(120deg,rgba(255,255,255,.98),rgba(248,246,241,.95));box-shadow:0 24px 70px rgba(11,29,53,.08);overflow:hidden}
 .vx-home:after{content:"";position:absolute;width:360px;height:360px;border:1px solid rgba(197,154,61,.18);border-radius:50%;right:-100px;bottom:-150px;box-shadow:0 0 0 55px rgba(197,154,61,.035),0 0 0 110px rgba(197,154,61,.025);pointer-events:none}
@@ -1017,7 +1017,7 @@ init_db()
 # é renderizada imediatamente na mesma interação do Streamlit.
 # Navegação institucional simplificada.
 MENU_GROUPS = [
-    ("Principal", ["Início", "Soluções", "Capacitação", "Sobre a Veritas", "Contato"]),
+    ("Principal", ["Início", "Soluções", "Capacitação", "Sobre a Veritas", "Fundador", "Contato", "Política de Privacidade"]),
 ]
 
 SOLUTION_PAGES = [
@@ -1124,6 +1124,12 @@ if st.session_state.show_mobile_menu:
 page = st.session_state.current_page
 
 if page == "Soluções":
+    st.markdown("""<style>
+    .st-key-vx_solutions .stButton > button {background:#FFFFFF !important;color:#0B1D35 !important;border:1px solid #C59A3D !important;box-shadow:0 4px 12px rgba(11,29,53,.04) !important;}
+    .st-key-vx_solutions .stButton > button p {color:#0B1D35 !important;}
+    .st-key-vx_solutions .stButton > button:hover {background:#F8F4EA !important;color:#0B1D35 !important;border-color:#B8892F !important;}
+    .st-key-vx_solutions .stButton > button:hover p {color:#0B1D35 !important;}
+    </style>""", unsafe_allow_html=True)
     st.markdown("## Soluções")
     st.caption("Diagnóstico, avaliação e acompanhamento para apoiar o uso responsável de Inteligência Artificial.")
     st.markdown(
@@ -1135,15 +1141,16 @@ if page == "Soluções":
         """,
         unsafe_allow_html=True,
     )
-    solution_cols = st.columns(2, gap="medium")
-    for idx, (target, description) in enumerate(SOLUTION_PAGES):
-        with solution_cols[idx % 2]:
-            st.markdown(f"### {target}")
-            st.write(description)
-            if st.button(f"Acessar {target}", key=f"solution_{target}", use_container_width=True):
-                st.session_state.current_page = target
-                st.query_params.clear()
-                st.rerun()
+    with st.container(key="vx_solutions"):
+        solution_cols = st.columns(2, gap="medium")
+        for idx, (target, description) in enumerate(SOLUTION_PAGES):
+            with solution_cols[idx % 2]:
+                st.markdown(f"### {target}")
+                st.write(description)
+                if st.button(f"Acessar {target}", key=f"solution_{target}", use_container_width=True):
+                    st.session_state.current_page = target
+                    st.query_params.clear()
+                    st.rerun()
     st.divider()
     st.caption("A Política de Privacidade continua acessível por link direto.")
 
