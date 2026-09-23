@@ -763,6 +763,21 @@ div[data-testid="stAlert"][data-baseweb="notification"] {
   }
 }
 
+
+/* ===== Veritas Nexum 2026 — refinamento institucional original ===== */
+.vx-topbrand{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.7rem 1.1rem;margin:.2rem 0 1rem;border:1px solid var(--vx-border);border-radius:16px;background:rgba(255,255,255,.82);backdrop-filter:blur(12px);box-shadow:0 8px 26px rgba(11,29,53,.05)}
+.vx-topbrand-name{font-family:Georgia,"Times New Roman",serif;font-size:1.05rem;font-weight:800;color:var(--vx-navy);letter-spacing:.02em}.vx-topbrand-tag{font-size:.78rem;color:#776B55;letter-spacing:.08em;text-transform:uppercase;font-weight:700}
+.vx-home{border:1px solid #E8E0D2;border-radius:30px;padding:clamp(2.3rem,5vw,5.4rem);min-height:70vh;background:linear-gradient(120deg,rgba(255,255,255,.98),rgba(248,246,241,.95));box-shadow:0 24px 70px rgba(11,29,53,.08);overflow:hidden}
+.vx-home:after{content:"";position:absolute;width:360px;height:360px;border:1px solid rgba(197,154,61,.18);border-radius:50%;right:-100px;bottom:-150px;box-shadow:0 0 0 55px rgba(197,154,61,.035),0 0 0 110px rgba(197,154,61,.025);pointer-events:none}
+.vx-home-title{max-width:1050px}.vx-home-sub{max-width:850px}.vx-home-signature{font-weight:700}
+.vx-proofstrip{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;margin:1.25rem 0 3.6rem;border:1px solid #E4DDCF;border-radius:18px;overflow:hidden;background:#E4DDCF}.vx-proofitem{background:#fff;padding:1.2rem 1.25rem}.vx-proofitem b{display:block;color:#0B1D35;font-size:.96rem;margin-bottom:.22rem}.vx-proofitem span{color:#697281;font-size:.82rem;line-height:1.45}
+.vx-sectionhead{max-width:900px;margin:1rem 0 1.4rem}.vx-sectionhead .eyebrow{font-size:.76rem;letter-spacing:.18em;text-transform:uppercase;font-weight:800;color:#C59A3D;margin-bottom:.55rem}.vx-sectionhead h2{font-family:Georgia,"Times New Roman",serif;font-size:clamp(1.9rem,3vw,3rem);line-height:1.08;margin:.15rem 0 .65rem}.vx-sectionhead p{color:#5C6572;line-height:1.7;font-size:1rem}
+.vx-servicegrid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin:0 0 3.5rem}.vx-service{position:relative;background:#fff;border:1px solid #E4DDCF;border-radius:18px;padding:1.45rem;min-height:190px;box-shadow:0 8px 24px rgba(11,29,53,.045)}.vx-service:before{content:"";position:absolute;left:1.45rem;top:0;width:48px;height:3px;background:#C59A3D}.vx-service .num{font-family:Georgia,"Times New Roman",serif;color:#C59A3D;font-size:.82rem;font-weight:800}.vx-service h3{font-size:1.08rem;margin:.75rem 0 .45rem}.vx-service p{font-size:.92rem;line-height:1.62;color:#667085;margin:0}
+.vx-cta{margin:2.2rem 0 3rem;padding:2rem clamp(1.4rem,4vw,3rem);border-radius:24px;background:linear-gradient(125deg,#0B1D35,#132B4B);box-shadow:0 18px 42px rgba(11,29,53,.15)}.vx-cta .eyebrow{color:#D6B866;font-size:.76rem;letter-spacing:.16em;text-transform:uppercase;font-weight:800}.vx-cta h2{color:#fff!important;font-family:Georgia,"Times New Roman",serif;margin:.45rem 0 .55rem}.vx-cta p{color:#E8E1D2;max-width:850px;line-height:1.65;margin:0}
+[data-testid="stSidebar"]{box-shadow:12px 0 35px rgba(11,29,53,.08)}
+@media(max-width:900px){.vx-proofstrip{grid-template-columns:1fr 1fr}.vx-servicegrid{grid-template-columns:1fr}.vx-topbrand-tag{display:none}.vx-home{border-radius:22px}.vx-home:after{display:none}}
+@media(max-width:560px){.vx-proofstrip{grid-template-columns:1fr}.vx-topbrand{padding:.65rem .8rem}.vx-home{padding:2rem 1.2rem}.vx-home-values{gap:.45rem}.vx-home-values span{font-size:.8rem}}
+
 </style>
 """,
     unsafe_allow_html=True,
@@ -1104,6 +1119,7 @@ page = st.session_state.current_page
 if page == "Início":
     st.markdown(
         """
+        <div class="vx-topbrand"><div class="vx-topbrand-name">VERITAS NEXUM</div><div class="vx-topbrand-tag">Tecnologia · Dados · Inteligência Artificial Responsável</div></div>
         <section class="vx-home">
           <div class="vx-home-kicker">VERITAS NEXUM · IA RESPONSÁVEL</div>
           <div class="vx-home-title">Inteligência Artificial com <span>consciência, critério e confiança.</span></div>
@@ -1119,6 +1135,13 @@ if page == "Início":
             <span>Confiança</span>
           </div>
           <div class="vx-home-signature">Tecnologia com verdade. Decisões com confiança.</div>
+        </section>
+
+        <section class="vx-proofstrip" aria-label="Pilares Veritas Nexum">
+          <div class="vx-proofitem"><b>Tecnologia</b><span>Soluções conectadas ao contexto real das organizações.</span></div>
+          <div class="vx-proofitem"><b>Dados</b><span>Qualidade, governança e uso consciente da informação.</span></div>
+          <div class="vx-proofitem"><b>IA Responsável</b><span>Riscos, transparência, supervisão e boas práticas.</span></div>
+          <div class="vx-proofitem"><b>Capacitação</b><span>Conhecimento aplicado para pessoas e equipes.</span></div>
         </section>
 
         <section class="vx-reality">
@@ -1143,6 +1166,23 @@ if page == "Início":
         """,
         unsafe_allow_html=True,
     )
+
+    st.markdown(
+        """
+        <div class="vx-sectionhead">
+          <div class="eyebrow">NOSSA ATUAÇÃO</div>
+          <h2>Estratégia, conhecimento e governança para uma IA que gere valor com responsabilidade.</h2>
+          <p>Atuamos de forma integrada, conectando tecnologia, dados, pessoas e governança sem perder de vista o contexto de cada organização.</p>
+        </div>
+        <div class="vx-servicegrid">
+          <div class="vx-service"><div class="num">01</div><h3>IA Responsável</h3><p>Boas práticas para adoção consciente, segura, transparente e orientada à supervisão humana.</p></div>
+          <div class="vx-service"><div class="num">02</div><h3>Governança e riscos</h3><p>Apoio à definição de papéis, controles, evidências, políticas e processos de acompanhamento.</p></div>
+          <div class="vx-service"><div class="num">03</div><h3>Dados e tecnologia</h3><p>Orientação para conectar qualidade de dados, arquitetura, processos e uso responsável de soluções digitais.</p></div>
+          <div class="vx-service"><div class="num">04</div><h3>Diagnóstico</h3><p>Avaliação orientativa de maturidade, riscos, transparência e oportunidades de evolução.</p></div>
+          <div class="vx-service"><div class="num">05</div><h3>Capacitação</h3><p>Palestras, workshops e programas de letramento para equipes, lideranças e profissionais.</p></div>
+          <div class="vx-service"><div class="num">06</div><h3>Transformação responsável</h3><p>Conexão entre inovação, processos, pessoas e critérios para decisões tecnológicas mais consistentes.</p></div>
+        </div>
+        """, unsafe_allow_html=True)
 
     st.markdown("---")
     st.markdown(
