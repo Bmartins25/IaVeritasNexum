@@ -765,7 +765,7 @@ div[data-testid="stAlert"][data-baseweb="notification"] {
 
 
 /* ===== Veritas Nexum 2026 — refinamento institucional original ===== */
-.vx-topbrand{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.7rem 1.1rem;margin:.2rem 0 1rem;border:1px solid var(--vx-border);border-radius:16px;background:rgba(255,255,255,.82);backdrop-filter:blur(12px);box-shadow:0 8px 26px rgba(11,29,53,.05)}
+.vx-topbrand{display:flex;align-items:center;justify-content:space-between;gap:1.5rem;padding:1rem 1.25rem;margin:.65rem 0 1.25rem;min-height:68px;box-sizing:border-box;border:1px solid var(--vx-border);border-radius:16px;background:rgba(255,255,255,.88);backdrop-filter:blur(12px);box-shadow:0 8px 26px rgba(11,29,53,.05);overflow:visible}
 .vx-topbrand-name{font-family:Georgia,"Times New Roman",serif;font-size:1.05rem;font-weight:800;color:var(--vx-navy);letter-spacing:.02em}.vx-topbrand-tag{font-size:.78rem;color:#776B55;letter-spacing:.08em;text-transform:uppercase;font-weight:700}
 .vx-home{border:1px solid #E8E0D2;border-radius:30px;padding:clamp(2.3rem,5vw,5.4rem);min-height:70vh;background:linear-gradient(120deg,rgba(255,255,255,.98),rgba(248,246,241,.95));box-shadow:0 24px 70px rgba(11,29,53,.08);overflow:hidden}
 .vx-home:after{content:"";position:absolute;width:360px;height:360px;border:1px solid rgba(197,154,61,.18);border-radius:50%;right:-100px;bottom:-150px;box-shadow:0 0 0 55px rgba(197,154,61,.035),0 0 0 110px rgba(197,154,61,.025);pointer-events:none}
@@ -1015,11 +1015,18 @@ init_db()
 
 # Navegação lateral baseada em botões. O clique atualiza o estado e a página
 # é renderizada imediatamente na mesma interação do Streamlit.
+# Navegação institucional simplificada.
 MENU_GROUPS = [
-    ("Institucional", ["Início", "Sobre a Veritas", "Capacitação", "Fundador"]),
-    ("Diagnóstico", ["Sistemas avaliados", "Nova avaliação", "Avaliar critérios"]),
-    ("Entregas", ["Resultados", "Plano de ação", "Relatório"]),
-    ("Relacionamento", ["Contato", "Política de Privacidade"]),
+    ("Principal", ["Início", "Soluções", "Capacitação", "Sobre a Veritas", "Contato"]),
+]
+
+SOLUTION_PAGES = [
+    ("Sistemas avaliados", "Consulte e gerencie os sistemas de IA cadastrados."),
+    ("Nova avaliação", "Inicie um novo diagnóstico orientativo."),
+    ("Avaliar critérios", "Aplique os critérios de avaliação aos sistemas cadastrados."),
+    ("Resultados", "Visualize os resultados consolidados das avaliações."),
+    ("Plano de ação", "Organize prioridades e ações de evolução."),
+    ("Relatório", "Gere a síntese estruturada da avaliação."),
 ]
 
 # Suporte a URL direta para a Política de Privacidade.
@@ -1116,7 +1123,31 @@ if st.session_state.show_mobile_menu:
 
 page = st.session_state.current_page
 
-if page == "Início":
+if page == "Soluções":
+    st.markdown("## Soluções")
+    st.caption("Diagnóstico, avaliação e acompanhamento para apoiar o uso responsável de Inteligência Artificial.")
+    st.markdown(
+        """
+        <div style="margin:.8rem 0 1.1rem;color:#667085;line-height:1.7;max-width:900px;">
+        As funcionalidades de diagnóstico e entrega da Veritas Nexum estão reunidas aqui para manter
+        a navegação principal mais simples e institucional.
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+    solution_cols = st.columns(2, gap="medium")
+    for idx, (target, description) in enumerate(SOLUTION_PAGES):
+        with solution_cols[idx % 2]:
+            st.markdown(f"### {target}")
+            st.write(description)
+            if st.button(f"Acessar {target}", key=f"solution_{target}", use_container_width=True):
+                st.session_state.current_page = target
+                st.query_params.clear()
+                st.rerun()
+    st.divider()
+    st.caption("A Política de Privacidade continua acessível por link direto.")
+
+elif page == "Início":
     st.markdown(
         """
         <div class="vx-topbrand"><div class="vx-topbrand-name">VERITAS NEXUM</div><div class="vx-topbrand-tag">Tecnologia · Dados · Inteligência Artificial Responsável</div></div>
