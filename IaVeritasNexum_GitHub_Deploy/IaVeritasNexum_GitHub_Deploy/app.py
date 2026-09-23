@@ -1099,6 +1099,62 @@ init_db()
 # Navegação lateral baseada em botões. O clique atualiza o estado e a página
 # é renderizada imediatamente na mesma interação do Streamlit.
 # Navegação institucional simplificada.
+
+st.markdown("""
+<style>
+/* ===== FINAL OVERRIDE: SELECTBOX CLARO ===== */
+div[data-testid="stSelectbox"] div[data-baseweb="select"] > div,
+div[data-testid="stSelectbox"] div[role="combobox"],
+div[data-testid="stSelectbox"] [data-baseweb="select"] [role="combobox"],
+div[data-testid="stSelectbox"] [data-baseweb="select"] > div:first-child {
+    background-color: #FFFFFF !important;
+    background: #FFFFFF !important;
+    color: #0B1D35 !important;
+    -webkit-text-fill-color: #0B1D35 !important;
+    border-color: #C59A3D !important;
+}
+
+div[data-testid="stSelectbox"] div[data-baseweb="select"] span,
+div[data-testid="stSelectbox"] div[data-baseweb="select"] div,
+div[data-testid="stSelectbox"] div[role="combobox"] * {
+    color: #0B1D35 !important;
+    -webkit-text-fill-color: #0B1D35 !important;
+}
+
+div[data-testid="stSelectbox"] svg {
+    fill: #0B1D35 !important;
+    color: #0B1D35 !important;
+}
+
+/* Lista aberta do select */
+div[data-baseweb="popover"],
+div[data-baseweb="popover"] > div,
+div[role="listbox"],
+ul[role="listbox"],
+ul[data-testid="stSelectboxVirtualDropdown"] {
+    background: #FFFFFF !important;
+    color: #0B1D35 !important;
+}
+
+div[role="option"],
+li[role="option"] {
+    background: #FFFFFF !important;
+    color: #0B1D35 !important;
+    -webkit-text-fill-color: #0B1D35 !important;
+}
+
+div[role="option"]:hover,
+li[role="option"]:hover,
+div[role="option"][aria-selected="true"],
+li[role="option"][aria-selected="true"] {
+    background: #F5F5F5 !important;
+    color: #0B1D35 !important;
+    -webkit-text-fill-color: #0B1D35 !important;
+}
+</style>
+""", unsafe_allow_html=True)
+
+
 MENU_GROUPS = [
     ("Principal", ["Início", "Soluções", "Capacitação", "Sobre a Veritas", "Fundador", "Contato", "Política de Privacidade"]),
 ]
