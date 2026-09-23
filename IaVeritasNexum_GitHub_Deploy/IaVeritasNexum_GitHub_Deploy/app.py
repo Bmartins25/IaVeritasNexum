@@ -1178,6 +1178,18 @@ elif privacy_param == "privacy":
     st.session_state.current_page = "Política de Privacidade"
 
 
+def navigate_to(item: str, mobile: bool = False):
+    # Callback executado antes da nova renderização do Streamlit.
+    # Isso evita o atraso visual da cor do item ativo no menu.
+    st.session_state.current_page = item
+    if item == "Política de Privacidade":
+        st.query_params["page"] = "privacy"
+    else:
+        st.query_params.clear()
+    if mobile:
+        st.session_state.show_mobile_menu = False
+
+
 with st.sidebar:
     st.markdown(
         f"""
@@ -1195,36 +1207,33 @@ with st.sidebar:
         st.markdown(f"<div class='vx-menu-section'>{section}</div>", unsafe_allow_html=True)
         for item in items:
             active = st.session_state.current_page == item
-            if st.button(
+            st.button(
                 item,
                 key=f"nav_{item}",
                 use_container_width=True,
                 type="primary" if active else "secondary",
-            ):
-                st.session_state.current_page = item
-                if item == "Política de Privacidade":
-                    st.query_params["page"] = "privacy"
-                else:
-                    st.query_params.clear()
+                on_click=navigate_to,
+                args=(item, False),
+            )
 
     st.divider()
     st.caption("Consultoria em IA Responsável • Capacitação • Governança • Diagnóstico")
 
 
-
 # Menu mobile responsivo com estado controlado.
-# Ao escolher uma opção, show_mobile_menu=False e o painel deixa de ser renderizado.
 if "show_mobile_menu" not in st.session_state:
     st.session_state.show_mobile_menu = False
 
+def toggle_mobile_menu():
+    st.session_state.show_mobile_menu = not st.session_state.show_mobile_menu
+
 with st.container(key="vx_mobile_menu_toggle"):
-    if st.button(
+    st.button(
         "✕" if st.session_state.show_mobile_menu else "☰",
         key="vx_mobile_toggle_btn",
         help="Fechar menu" if st.session_state.show_mobile_menu else "Abrir menu",
-    ):
-        st.session_state.show_mobile_menu = not st.session_state.show_mobile_menu
-        st.rerun()
+        on_click=toggle_mobile_menu,
+    )
 
 if st.session_state.show_mobile_menu:
     with st.container(key="vx_mobile_menu_panel"):
@@ -1245,19 +1254,14 @@ if st.session_state.show_mobile_menu:
             )
             for item in items:
                 active = st.session_state.current_page == item
-                if st.button(
+                st.button(
                     item,
                     key=f"mobile_nav_{item}",
                     use_container_width=True,
                     type="primary" if active else "secondary",
-                ):
-                    st.session_state.current_page = item
-                    if item == "Política de Privacidade":
-                        st.query_params["page"] = "privacy"
-                    else:
-                        st.query_params.clear()
-                    st.session_state.show_mobile_menu = False
-                    st.rerun()
+                    on_click=navigate_to,
+                    args=(item, True),
+                )
 
 
 page = st.session_state.current_page
